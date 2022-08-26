@@ -1,0 +1,1 @@
+client_script {"loadout_vest.lua"}
