@@ -1,0 +1,6 @@
+Commands:
+/911 - Makes a 911 call
+/dispatch - Dispatcher responds on a 911 call
+/me - Player is doing an action
+/ooc - Allows player to talk out of caracter
+/run - Runs name On ID and plate on vehicle

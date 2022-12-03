@@ -1,0 +1,2 @@
+Command:
+/dv - Delete a vehicle

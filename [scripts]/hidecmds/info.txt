@@ -1,0 +1,1 @@
+This script deletes any mis-spelled or unknown commands from displaying in chat

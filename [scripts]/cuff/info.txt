@@ -1,0 +1,4 @@
+Commands:
+/hu - Hands up
+/huk - Hands up and kneel on ground
+/cuff (player id) - Cuff the specifed player

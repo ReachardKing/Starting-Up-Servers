@@ -1,0 +1,2 @@
+Command:
+/drag - Drag the nearest player

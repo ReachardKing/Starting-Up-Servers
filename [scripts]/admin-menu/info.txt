@@ -1,0 +1,2 @@
+This is the code for the admin menu.
+If you want to change something, do so in permissions.cfg
