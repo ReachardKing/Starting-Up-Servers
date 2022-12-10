@@ -1,6 +1,6 @@
 You can code this to you hear content or rewrite this.
 
-Allways give resource kije this to you developers.
+Allways give resource like this to you developers.
 
 I have given the basics so it up to your developers to figure it out
 
@@ -13,3 +13,4 @@ This current file will have all the vehicles inported.
 
 
 Not tested
+lin 42- 56 is where the problem lies
