@@ -13,4 +13,4 @@ This current file will have all the vehicles inported.
 
 
 Not tested
-lin 42- 56 is where the problem lies
+If you want the welldone version then head to: https://patreon.com/NamelessRP
