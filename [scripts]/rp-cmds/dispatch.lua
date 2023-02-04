@@ -2,7 +2,7 @@ AddEventHandler('chatMessage', function(source, name, msg)
 	sm = stringsplit(msg, " ");
 	if sm[1] == "/dispatch" then
 		CancelEvent()
-		TriggerClientEvent('chatMessage', -1, "^6 Dispatch - " .. name, { 128, 128, 128 }, string.sub(msg,10))
+		  TriggerClientEvent("chat:addMessage", source, {color = {0, 255, 0}, multiline = false, args = {name, message}})
 	end
 end)
 
