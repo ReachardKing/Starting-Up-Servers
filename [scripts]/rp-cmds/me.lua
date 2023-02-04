@@ -2,7 +2,7 @@ AddEventHandler('chatMessage', function(source, name, msg)
 	sm = stringsplit(msg, " ");
 	if sm[1] == "/me" then
 		CancelEvent()
-		TriggerClientEvent('chatMessage', -1, "^6 Me - " .. name, { 128, 128, 128 }, string.sub(msg,5))
+		  TriggerClientEvent("chat:addMessage", source, {color = {0, 255, 0}, multiline = false, args = {name, message}})
 	end
 end)
 
