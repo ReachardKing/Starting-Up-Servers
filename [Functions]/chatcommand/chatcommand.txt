@@ -1,0 +1,147 @@
+-- Chat Commands
+AddEventHandler("chat:addMessage", function(source, name, msg)
+	cm = stringsplit(msg, " ")
+end)
+
+RegisterCommand("911", function(source, args, raw)
+	if cm[1] == "/911" then
+		TriggerClientEvent('chat:addMessage', -1, "^6 911 " .. GetPlayerName(source).. " IS CALLING ABOUT", { 128, 128, 128 }, table.concat(args," "))
+	end
+end)
+
+
+RegisterCommand("me", function(source, args, raw)
+	if cm[1] == "me" then
+		TriggerClientEvent('chat:addMessage', -1, "^6  " .. GetPlayerName(source), { 128, 128, 128 }, table.concat(args, " "))
+	end		
+end)
+
+
+RegisterCommand("ooc", function(source, args, raw)
+	if cm[1] == "ooc" then
+		TriggerClientEvent('chat:addMessage', -1, "^6 OOC " .. GetPlayerName(source), { 128, 128, 128 }, table.concat(args, " "))
+	end
+end)
+
+RegisterCommand("looc", function(source, args, raw) 
+	if cm[1] == "looc" then
+		TriggerClientEvent('chat:addMessage', -1,  " ^8" .. GetPlayerName(source) .. ": ", {128, 128, 128}, table.concat(args, " "))
+	end
+end)
+
+RegisterCommand("run", function(source, args, raw)
+	if cm[1] == "run" then
+		TriggerClientEvent('chat:addMessage', -1, "^6 Runs Name On ID, Runs plate on vehicle" .. GetPlayerName(source), { 128, 128, 128 }, table.concat(args, " "))
+	end
+end)
+
+RegisterCommand("211", function(source, args, raw)
+	if cm[1] == "211" then
+		TriggerClientEvent('chat:addMessage', -1, "^6 Non emergency calls only." .. GetPlayerName(source), { 128, 128, 128 }, table.concat(args, " "))
+	end
+end)
+
+RegisterCommand("311", function(source, args, raw)
+	if cm[1] == "311" then
+		TriggerClientEvent('chat:addMessage', -1, "^6 Get tow in route to your postal" .. GetPlayerName(source), { 128, 128, 128 }, table.concat(args,  " "))
+	end
+end)
+
+RegisterCommand("Pdalert", function(source, args, raw)
+	if cm[1] == "Pdalert" then
+		TriggerClientEvent('chat:addMessage', -1, "^6 This is a problem at a certain location" .. GetPlayerName(source), { 128, 128, 128 }, table.concat(args, " "))
+	end
+end)
+
+--  1
+RegisterNetEvent("chat:addMessage")
+
+AddEventHandler("chat:addMessage", function(source, name, msg)
+	cm = stringsplit(msg, " ")
+	if cm[1] == "/911" then
+		
+		TriggerClientEvent('chat:addMessage', -1, "^6 911 " .. GetPlayerName(source).. " IS CALLING ABOUT", { 128, 128, 128 }, table.concat(args," "))
+	end
+end)
+
+
+-- 2
+
+AddEventHandler("chat:addMessage", function(source, name, msg)
+	cm = stringsplit(msg, " ")
+	if cm[1] == "/me" then
+		
+		TriggerClientEvent('chat:addMessage', -1, "^6  " .. GetPlayerName(source), { 128, 128, 128 }, table.concat(args, " "))
+	end
+end)
+
+-- 3
+
+AddEventHandler("chat:addMessage", function(source, name, msg)
+	cm = stringsplit(msg, " ")
+	if cm[1] == "/ooc" then
+		
+		TriggerClientEvent('chat:addMessage', -1, "^6 OOC " .. GetPlayerName(source), { 128, 128, 128 }, table.concat(args, " "))
+	end
+end)
+
+-- 4
+
+AddEventHandler("chat:addMessage", function(source, name, msg)
+	cm = stringsplit(msg, " ")
+	if cm[1] == "/looc" then
+		
+		TriggerClientEvent('chat:addMessage', -1,  " ^8" .. GetPlayerName(source) .. ": ", {128, 128, 128}, table.concat(args, " "))
+	end
+end)
+
+--  5
+
+AddEventHandler("chat:addMessage", function(source, name, msg)
+	cm = stringsplit(msg, " ")
+	if cm[1] == "/run" then
+		
+		TriggerClientEvent('chat:addMessage', -1, "^6 Runs Name On ID, Runs plate on vehicle" .. GetPlayerName(source), { 128, 128, 128 }, table.concat(args, " "))
+	end
+end)
+
+
+-- 6
+
+AddEventHandler("chat:addMessage", function(source, name, msg)
+	cm = stringsplit(msg, " ")
+	if cm[1] == "/911" then
+		
+		TriggerClientEvent('chat:addMessage', -1, "^6 911 " .. GetPlayerName(source).. " IS CALLING ABOUT", { 128, 128, 128 }, table.concat(args," "))
+	end
+end)
+
+-- 7 
+
+AddEventHandler("chat:addMessage", function(source, name, msg)
+	cm = stringsplit(msg, " ")
+	if cm[1] == "/211" then
+		
+		TriggerClientEvent('chat:addMessage', -1, "^6 Non emergency calls only." .. GetPlayerName(source), { 128, 128, 128 }, table.concat(args, " "))
+	end
+end)
+
+-- 8 
+
+AddEventHandler("chat:addMessage", function(source, name, msg)
+	cm = stringsplit(msg, " ")
+	if cm[1] == "/311" then
+		
+		TriggerClientEvent('chat:addMessage', -1, "^6 Get tow in route to your postal" .. GetPlayerName(source), { 128, 128, 128 }, table.concat(args,  " "))
+	end
+end)
+
+-- 9
+
+AddEventHandler("chat:addMessage", function(source, name, msg)
+	cm = stringsplit(msg, " ")
+	if cm[1] == "/Pdalert" then
+		
+		TriggerClientEvent('chat:addMessage', -1, "^6 This is a problem at a certain location" .. GetPlayerName(source), { 128, 128, 128 }, table.concat(args, " "))
+	end
+end)
