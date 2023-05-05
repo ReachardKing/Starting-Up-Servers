@@ -9,4 +9,6 @@ RegisterCommand("trunk", function()
     else 
     SetVehicleDoorShut(veh, 5, false)
     end
+        if not veh then
+            exports.function.Notify(" can't open the trunk while on foot")
 end)
