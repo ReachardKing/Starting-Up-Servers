@@ -22,10 +22,10 @@ Citizen.CreateThread(function()
                 if AutoTurnOff == false then -- toggle on
                     AutoTurnOff = true
                     SetVehicleEngineOn(GetVehiclePedIsIn(GetPlayerPed(-1)), true, false, true) -- on
-                        SetVehicleDoorShut()
-                        SetVehicleDoorShut()
-                        SetVehicleDoorShut()
-                        SetVehicleDoorShut()
+                    SetVehicleDoorShut(GetVehiclePedIsIn(PlayerPedId()), 1, false)
+                    SetVehicleDoorShut(GetVehiclePedIsIn(PlayerPedId()), 2, false)
+                    SetVehicleDoorShut(GetVehiclePedIsIn(PlayerPedId()), 3, false)
+                    SetVehicleDoorShut(GetVehiclePedIsIn(PlayerPedId()), 4, false)
                     ShowNotification("~g~AutoTurnOff is now:on")
                 elseif AutoTurnOff == true then -- toggle off
                     AutoTurnOff = false 
