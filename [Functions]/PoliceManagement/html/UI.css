@@ -1,0 +1,26 @@
+
+.container {
+    margin: 15.5px;    
+    border-radius: 25px;
+    border: 17px solid black;
+    background-color: black;
+    color: white;
+    padding: 53px;
+    position: absolute;
+    cursor: pointer;
+    overflow: hidden;
+    text-transform: capitalize;
+}
+
+.container {
+    width: 31%;
+    position: absolute;
+    transform: translate(-50%);
+    padding: 10px;
+    top: 100%;
+    left: 75%;
+    margin-top: -250px;
+    margin-left: -400px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <link rel="stylesheet" href="UI.css">
+</head>
+<style>
+  textarea {
+    resize: none;
+    width: 100%;
+    height: 40px;
+  }
+
+  /* Hire Functions */
+
+  /* Functions */
+
+  .Management {
+    border-radius: 22px;
+    border: 17px solid black;
+    background-color: black;
+    color: white;
+    transition: 0.2 all;
+    padding: 53px;
+    margin: 15.5;
+    cursor: pointer;
+    text-transform: capitalize;
+
+  }
+
+  .Management {
+    width: 35%;
+    height: 69%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%) scale(0);
+    padding: 10px;
+    top: 80%;
+    left: 75%;
+    margin-top: -250px;
+    margin-left: -400px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  #Management.active{
+    display: block;
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .popup .overlay {
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vw;
+    background: rgb(0, 0, 0, 0.7);
+    z-index: 1;
+    display: none;
+  }
+
+  .Model-body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: grey;
+    width: 550px;
+    height: 220px;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+  }
+
+  .Settings-body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)scale(0);
+    background: gray;
+    width: 460px;
+    height: 220px;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+  }
+
+  .popup.active .overlay {
+    display: block;
+  }
+
+  .popup.active .Model-body {
+    display: block;
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .popup.active .Settings-body {
+    display: block;
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  p {
+    background: #555;
+  }
+
+  h1 {
+    font-size: 10px;
+    text-align: justify;
+  }
+
+  .close {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 1px;
+    width: 30px;
+    background: purple;
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 50%;
+  }
+
+
+  .scrollable {
+    white-space: normal;
+    padding: 8px 0px;
+    box-shadow: 0px 5px 10px rgb(0, 0, 0);
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  .button {
+    background-color: red;
+    font-size: 20px;
+    width: 100%;
+    margin: 0px auto;
+    padding: 15px 14px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    text-transform: capitalize;
+    position: relative;
+    bottom: -50px;
+    cursor: pointer;
+  }
+
+  #restart {
+    transition: 0.3s;
+    opacity: 0.7;
+    cursor: pointer;
+  }
+
+  .Submit {
+    margin-left: 0.3vw;
+    background-color: rgb(8, 252, 69);
+    width: 8.6vh;
+    height: 3vh;
+    border-radius: 0.5vh;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .active,
+  .open-button:hover {
+    background-color: #555;
+  }
+
+  .open-button {
+    margin-right: 0.3vw;
+    background-color: purple;
+    width: 8.6vh;
+    height: 3vh;
+    border-radius: 0.5vh;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+  }
+
+  .Cancel {
+    margin-left: 0.2vw;
+    height: 3vh;
+    background-color: rgb(236, 19, 19);
+    width: 4vw;
+    border-radius: 0.5vh;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .Fired {
+    height: 3vh;
+    background-color: rgb(236, 19, 19);
+    width: 4vw;
+    border-radius: 0.3vh;
+    cursor: pointer;
+  }
+
+  #version {
+    width: 70px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background-color: aqua;
+    top: 50%;
+    left: 63%;
+    border-radius: 5px;
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.25);
+    font-size: 20px;
+  }
+
+  .autosave-message {
+    text-align: center;
+    color: greenyellow;
+  }
+
+  input {
+    width: 100%;
+  }
+</style>
+<script>
+  $(function () {
+    window.onload = (e) => {
+      window.addEventListener("message", (event) => {
+        var item = event.data;
+        if (item !== undefined && item.action === "ui") {
+          if (item.Jobdisplay === true) {
+            $(".Management").show();
+          } else if (item.Jobdisplay == false) {
+            $(".Management").hide();
+          }
+        } else if (item.action === "remove") {
+          $(".Management").hide();
+        }
+
+        if (item.type === "refresh") {
+          $(".displaycontent").empty();
+          let GatherAllInfo = JSON.parse(item.GatherAllInfo)
+          Object.keys(GatherAllInfo).forEach((id) => {
+            createInfo(GatherAllInfo[id].Name || "", GatherAllInfo[id].JOB || "", GatherAllInfo[id].SUB || "", GatherAllInfo[id].LSPD || "", GatherAllInfo[id].BCSO || "", GatherAllInfo[id].Trooper || "")
+          })
+        }
+        function createInfo(Name, JOB, SUB, Dispatch, LSPD, BCSO, Trooper) {
+          if (Name.lengh + JOB.lengh + SUB.lengh + Dispatch.lengh + BCSO.lengh + Troopers.lengh) {
+            $(".displaycontent").append(`${name} ${JOB} ${SUB} ${Dispatch} ${LSPD} ${BCSO} ${BCSO} ${Troopers}`)
+          }
+        }
+
+        $("#save").click("click", () => {
+          $.post("https://PoliceManagement/remove");
+          return;
+        })
+
+        $(".Cancel").click("click", () => {
+          $.post("https://PoliceManagement/remove");
+          return;
+        });
+
+        $(".Fired").click("click", () => {
+          $.post("https://PoliceManagement/remove");
+          return;
+        })
+
+        $(function () {
+          document.onkeydown = function (data) {
+            if (data.which == 27) {
+              $.post(
+                "https://PoliceManagement/NUIFocusOff",
+                JSON.stringify({})
+              );
+              return;
+            }
+          };
+        });
+
+        document.onkeyup = function (data) {
+          if (data.which == 27) {
+            $.post("https://PoliceManagement/remove", JSON.stringify({}));
+            return;
+          }
+        };
+        const scrollable = document.querySelector(".scrollable");
+        scrollable.addEventListener("wheel", function (e) {
+          if (e.wheelDelta > 0) {
+            this.scrollableup -= 50;
+          } else {
+            this.scrollableup += 50;
+          }
+        }, { passive: true });
+      });
+    };
+  });
+
+  $(function () {
+    window.onload = (e) => {
+      window.addEventListener("message", function (event) {
+        var item = event.data;
+
+        if (item !== undefined && item.type === 'ui') {
+          if (item.HireDisplay === true) {
+            $(".container").show();
+          } else {
+            $(".container").hide();
+          }
+        }
+
+        if (item.type === 'remove') {
+          $(".container").hide();
+        }
+
+        $(".Cancel").click(function () {
+          $.post('https://Hire/remove', JSON.stringify({}));
+          return;
+        })
+
+        $("#Hire").click(function () {
+          $.post('https://Hire/remove', JSON.stringify({}));
+          return;
+        })
+        $("cancel").addEventListener("click", () => {
+          $(".container").hide();
+        })
+
+        $(function () {
+          document.onkeyup = function (data) {
+            if (data.which == 27) {
+              $.post('https://Hire/NUIFocusOff', JSON.stringify({}));
+              return;
+            }
+          };
+        });
+      });
+    };
+  }); 
+</script>
+
+<script>
+  function OpenButton() {
+    document.getElementById("popup-1").classList.add("active");
+  }
+
+  function SettingsButton() {
+    document.getElementById("popup-2").classList.add("active");
+  }
+
+  function CloseButton() {
+    document.getElementById("popup-1").classList.remove("active");
+  }
+
+  function SettingCloseButton() {
+    document.getElementById("popup-2").classList.remove("active");
+  }
+  function ClassDivider() {
+    document.getElementById("Management").classList.add("active");
+  }
+
+  function HideClassDivider() {
+    document.getElementById("Management").classList.remove("active");
+
+  }
+</script>
+
+<body>
+  <script src="Police.js" type="text/javascript"></script>
+  <script src="Settings.js" type="text/javascript"></script>
+
+  <div class="container" id="container">
+    <h2>Input a call sign</h2>
+    <input id="name" type="tex" placeholder="Please Enter Player Name" required />
+    <div class="button">
+        <button class="Submit" id="Hire" onclick="ClassDivider()">Confirm</button>
+        <button class="Cancel" type="reset" onclick="HideClassDivider()">Cancel</button>
+        <div class="This" id="version"> V: 2.0.0</div>
+      </div>
+  </div>
+  <div class="Management" id="Management">
+    <div class="scrollable">
+      <p>Police Empolyee Management</p>
+
+      <div class="popup" id="popup-1">
+        <div class="overlay"></div>
+        <div class="Model-body">
+          <button class="close" onclick="CloseButton()">&times;</button>
+          <p>Players In academy</p>
+          <hr>
+          <h1>Name: </h1>
+          <h1>Job:</h1>
+          <h1>Dispatch: </h1>
+          <h1>Ranks: </h1>
+          <h1>Serts:</h1>
+          <h1>Action: <button class="Fired" id="fire" onclick="CloseButton()">Fire</button></h1>
+          <div class="displaycontent">
+            <!-- info -->
+
+          </div>
+        </div>
+      </div>
+
+      <div class="popup" id="popup-2">
+        <div class="overlay"></div>
+        <div class="Settings-body">
+          <button class="close" onclick="SettingCloseButton()">&times;</button>
+          <p>Police Employee Management Settings</p>
+          <hr>
+          <p>Change Seetings</p>
+          <input id="id" placeholder="CallSign" min="1" max="255" required="required">
+          <br />
+          <label>Please select a Job</label><br />
+          <input id="options" class="JOB" type="text" placeholder="Please Enter A Job." required />
+          <br />
+          <label>Please Select Subsection</label><br>
+          <input id="options" class="SUB" type="text" placeholder="Please Enter A Subsection." required />
+          <br>
+          <label> Enter a Dispatch position</label><br>
+          <input id="options" class="Dispatch" type="text" placeholder="Please Enter A Dispatch Position." required />
+          <br>
+          <label>Please selct LSPD rank.</label><br />
+          <input id="options" class="LSPD" type="text" placeholder="Please Enter LSPD Rank." required />
+          <label>Please Enter BCSO rank.</label><br />
+          <input id="options" class="BCSO" type="text" placeholder="Please Enter BCSO Rank." required />
+          <br />
+          <label>Please Enter TROOPERS rank.</label><br />
+          <input id="options" class="Trooper" type="text" placeholder="Please Enter TROOPER Rank." required />
+          <br /><br />
+          <!-- Serts eg air, intersepter and the rest-->
+          <textarea class="Serts" id="others" placeholder="Serts" cols="10" rows="10"></textarea>
+          <p>Players In academy</p>
+          <hr>
+          <div class="displaycontent"><!-- info --></div>
+          <button class="Submit" id="Save">Confirm</button>
+          <button class="Fired" id="fire" onclick="SettingCloseButton()">close</button>
+        </div>
+      </div>
+
+      <input id="name" type="tex" placeholder="Please Enter Player Name." required>
+      <br /><br>
+      <input id="options" class="JOB" type="text" placeholder="Please Enter A Job." required />
+      <br />
+      <br>
+      <input id="options" class="Sub" type="text" placeholder="Please Enter A Subsection." required />
+      <br>
+      <br>
+      <input id="options" class="Dispatch" type="text" placeholder="Please Enter A Dispatch Position." required />
+      <br>
+      <br />
+      <input id="options" class="LSPD" type="text" placeholder="Please Enter LSPD Rank." required />
+      <br /><br>
+      <input id="options" class="BCSO" type="text" placeholder="Please Enter BCSO Rank." required />
+      <br />
+      <br />
+      <input id="options" class="Trooper" type="text" placeholder="Please Enter TROOPER Rank." required />
+      <br /><br />
+      <!-- Serts eg air, intersepter and the rest-->
+      <textarea class="Serts" id="others" placeholder="Serts" cols="10" rows="10"></textarea>
+      <div class="button">
+        <button class="Submit" id="Update">Confirm</button>
+        <button class="Cancel" type="reset">Cancel</button>
+
+        <button class="open-button" onclick="OpenButton()">Edit</button>
+        <button class="open-button" onclick="SettingsButton()">Settings</button>
+      </div>
+    </div>
+</body>
+
+</html>

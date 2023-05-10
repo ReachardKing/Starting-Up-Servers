@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width-device-width, initial-scale=1.0">
+</head>
+
+<body onload="GetItem()">
+  <style>
+    .popup .overlay {
+      position: fixed;
+      overflow: hidden;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vw;
+      background: rgb(0, 0, 0, 0.7);
+      z-index: 1;
+      display: none;
+    }
+
+    .Model-body {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: blue;
+      width: 450px;
+      height: 220px;
+      z-index: 2;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+      display: none;
+      overflow-y: scroll;
+    }
+
+    p {
+      background: #222;
+    }
+
+    .close {
+      cursor: pointer;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      width: 30px;
+      background: purple;
+      color: white;
+      color: #fff;
+      font-size: 25px;
+      font-weight: 600;
+      text-align: center;
+      border-radius: 50%;
+    }
+
+    .popup.active .overlay {
+      display: block;
+    }
+
+    .popup.active .Model-body {
+      display: block;
+      transition: all 300ms ease-in-out;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .scrollable {
+      white-space: normal;
+      padding: 8px 0px;
+      box-shadow: 0px 5px 10px rgb(0, 0, 0);
+      overflow-y: scroll;
+    }
+
+    .scrollable {
+      white-space: normal;
+      padding: 8px 0px;
+      box-shadow: 0px 5px 10px rgb(0, 0, 0);
+      overflow-y: scroll;
+    }
+
+    .active,
+    .open-button:hover {
+      background-color: #555;
+    }
+
+    .open-button {
+      margin-right: 0.3vw;
+      background-color: purple;
+      width: 8.6vh;
+      height: 3vh;
+      border-radius: 0.5vh;
+      transition: all 0.3s ease-out;
+      cursor: pointer;
+    }
+
+    .close-button {
+      width: 50%;
+      background-color: purple;
+      margin-top: 80px;
+      padding: 10px 0;
+      border: 0;
+      outline: auto;
+      font-size: 18px;
+      border-radius: 50px;
+      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+  </style>
+  <!-- <p id="OpenText"></p>
+  <p id="savedText"></p>
+
+  <input type="text" id="input" />
+  <button class="close-button" onclick="Save()">save</button>
+  <button onclick="Remove()"> Remove</button>
+  <script>
+    var storedItem = localStorage.getItem("StoredItem");
+    function Save() {
+      var Item = document.getElementById("input").value;
+      localStorage.setItem("StoredItem", Item);
+      document.getElementById("savedText").innerHTML = Item + "Saved";
+    }
+    function GetItem() {
+      localStorage.getItem("SotredItem");
+      document.getElementById("OpenText").innerHTML = storedItem + "Opened";
+    }
+    function Remove() {
+      localStorage.getItem("StoredItem")
+      document.getElementById("savedText").innerHTML = storedItem - "Removed";
+
+    }
+  </script> -->
+  <script src="Police.js"></script>
+
+  <script>
+    function OpenButton() {
+      document.getElementById("popup-1").classList.add("active");
+    }
+    function CloseButton() {
+      document.getElementById("popup-1").classList.remove("active");
+    }
+    function example() {
+    let ul = document.querySelector("ul");
+    let type = document.querySelector("input").value;
+    ul.innerHTML = type
+    }
+  </script>
+
+  <div class="popup" id="popup-1">
+    <div class="overlay"></div>
+    <div class="Model-body">
+      <button class="close" onclick="CloseButton()">&times;</button>
+      <p>Players In academy</p>       
+
+      <hr>  
+      <div>
+       <input type="text">
+        <button onclick="example()">Add</button>
+        <ul></ul>
+      </div>
+    </div>
+  </div>
+  <button class="open-button" onclick="OpenButton()">Open</button>
+
+</body>
+
+</html>
