@@ -5,6 +5,8 @@ game 'gta5'
 
 ui_page "html/Police.html"
 
+discription " Shit version"
+
 files {
     "html/Police.html",
     "html/Police.js",
