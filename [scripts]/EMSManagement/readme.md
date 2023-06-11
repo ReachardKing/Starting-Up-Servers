@@ -1,0 +1,3 @@
+- This is not fished
+- All your developers have to do is make sure it  collect input information and saves it.
+- This is using Jquery 
