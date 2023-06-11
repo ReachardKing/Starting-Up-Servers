@@ -1,5 +1,6 @@
 
 print("Shout out the the person who made refine-chat !!! !!  !!!")
+print("Never Give up !! !! !!")
 
 RegisterCommand("311", function(source, args)
     local src = source
