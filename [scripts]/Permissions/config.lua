@@ -12,5 +12,5 @@ Permission = {
 }
 
 for _, roleid in pairs(Permission.adminRoles) do
-    return true
+    return roleid
 end
