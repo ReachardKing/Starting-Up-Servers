@@ -769,7 +769,7 @@ function Dealership()
             Dealership2:AddItem(Seeall)
 
             Seeall.Activated = function(sender, item, index)
-                CustomPedVeicle(DealershipVehicle.CustomeVhix, DealershipVehicle.Livery, DealershipVehicle.extras)
+                CustomPedVeicle(DealershipVehicle.Name, DealershipVehicle.Livery, DealershipVehicle.extras)
             end
         end
     end
