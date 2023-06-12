@@ -12,7 +12,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="MDT.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="Others.css">
+    <script src="DisplayContent.js" type="text/javascript"></script>
+    
     <style>
         @import url('https://use.fontawesome.com/releases/v6.4.0/css/all.css');
 
@@ -181,7 +182,6 @@
         .Header-link>p {
             margin: 0;
             padding: 0;
-            border: none;
             color: white;
             text-align: right;
             background: darkblue;
@@ -190,7 +190,6 @@
 
         .nav-link {
             background: darkblue;
-            border: none;
             width: 88%;
             height: auto;
             margin-top: 15px;
@@ -245,6 +244,7 @@
             border-radius: 50%;
         } */
 
+
         .search-bar {
             width: 38%;
             display: flex;
@@ -269,12 +269,7 @@
             color: #cac7ff;
         }
 
-        .search-bar button image {
-            width: 25px;
-        }
-
         .search-bar button {
-            border: 0;
             border-radius: 50%;
             width: 60px;
             height: 60px;
@@ -535,6 +530,285 @@
             background: var(--color-9);
         }
     </style>
+    <style>
+        /* Incident / others */
+        /* Incident Reoprt */
+        .manage-incidents-container {
+            width: 60%;
+            background: var(--color-4);
+            transition: 0.3s;
+            transform: translate(50%, -100%)scale(0);
+        }
+
+        #manage-incidence-boxes.active {
+            width: 60%;
+            background: var(--color-4);
+            transform: translate(50%, -100%)scale(1);
+        }
+
+        #manage-incidence-boxes.active {
+            display: block;
+            transition: all 300ms ease-in-out;
+            transform: translate(50%, -100%)scale(1);
+        }
+
+        .IncidentTitle {
+            cursor: pointer;
+            position: absolute;
+            left: 20px;
+            top: 1px;
+            background: transparent;
+            color: var(--color-6);
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .manage-incidents-title-input {
+            color: var(--color-2);
+            font-weight: lighter;
+            width: 95%;
+            margin: auto;
+            align-items: center;
+        }
+
+        /* incidents reports */
+        .manage-incidents-reports-content {
+            width: 91%;
+            margin: auto;
+            margin-top: 1px;
+            max-height: 30vh;
+            background: var(--color-5);
+            columns: var(--color-3);
+            font-size: 15px;
+            padding: 1px;
+            overflow-y: scroll;
+        }
+
+        /* Location */
+        .manage-incidents-title-location {
+            color: var(--color-2);
+            font-weight: lighter;
+            width: 95%;
+            margin: auto;
+            align-items: center;
+        }
+
+        /* Evidence */
+        .manage-incidents-evidence-container {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--color-3);
+            color: var(--color-3);
+            font-size: 18px;
+            margin: auto;
+            font-weight: bolder;
+            width: 90%;
+            height: fit-content;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .manage-incidents-evidence-title {
+            background: var(--color-4);
+            color: var(--color-3);
+            font-size: 18px;
+            font-weight: bolder;
+            margin: auto;
+            width: 95%;
+            align-items: center;
+        }
+
+        .incidents-upload-input {
+            background: var(--color-3);
+            color: var(--color-8);
+            text-align: center;
+            margin: auto;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        /* officer report Involvemdnt */
+        .reports-officers-tags-container {
+            display: flex;
+            flex-direction: column;
+            background: var(--color-1);
+            color: var(--color-3);
+            width: 100%;
+            text-align: center;
+            max-height: 150px;
+            margin-top: 1px;
+            text-align: center;
+        }
+
+        .manage-incidents-officers-title {
+            background: var(--color-4);
+            color: var(--color-3);
+            font-size: 18px;
+            font-weight: bolder;
+            padding-top: 1px;
+            padding-bottom: 1px;
+            text-align: center;
+            width: 95%;
+            align-items: center;
+        }
+
+        .manage-incidents-officers-holder {
+            margin: auto;
+            width: 95%;
+            margin-top: 1px;
+            max-height: 14vh;
+            overflow-y: scroll;
+        }
+
+        /* civilians tages */
+        .reports-civilians-tags-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .manage-incidents-civilians-title {
+            background: var(--color-4);
+            color: var(--color-3);
+            font-size: 18px;
+            font-weight: bolder;
+            text-align: center;
+            margin: auto;
+            width: 95%;
+            align-items: center;
+        }
+
+        .manage-incidents-civilians-holder {
+            overflow-y: scroll;
+            margin: auto;
+            width: 95%;
+            max-height: 14vh;
+        }
+
+        .manage-incidents-civilians-add-btn {
+            background: var(--color-4);
+            color: var(--color-3);
+            font-size: 18px;
+            font-weight: bolder;
+            margin: auto;
+            width: 95%;
+            align-items: center;
+            text-align: center;
+        }
+
+        .manage-incidents-civilians-add-btn :hover {
+            background: var(--color-3);
+        }
+
+        /* incidents-tags */
+        .manage-incidents-tags-container {
+            display: flex;
+            flex-direction: column;
+            border: 2px solid var(--color-3);
+            background: var(--color-4);
+            color: var(--color-3);
+            font-size: 18px;
+            font-weight: bolder;
+            margin: auto;
+            width: 95%;
+            height: fit-content;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .manage-incidents-tags-title {
+            background: var(--color-4);
+            color: var(--color-3);
+            font-size: 18px;
+            font-weight: bolder;
+            text-align: center;
+            margin: auto;
+            width: 95%;
+            align-items: center;
+        }
+
+        .manage-incidents-tags-holder {
+            overflow-y: scroll;
+            overflow: auto;
+            margin: auto;
+            width: 1px;
+            max-height: 14vh;
+        }
+
+        /* None Inportant */
+        .manage-incidents-evidence-add-btn {
+            background: var(--color-4);
+            color: var(--color-2);
+            font-size: 18px;
+            font-weight: bolder;
+            margin: auto;
+            margin-top: 1px;
+            margin-right: 2px;
+            width: 10%;
+            text-align: center;
+        }
+
+        .manage-incidents-evidence-add-btn:hover {
+            background: var(--color-3);
+        }
+
+        .reports-officers-add-btn {
+            background: var(--color-4);
+            color: var(--color-2);
+            font-size: 18px;
+            font-weight: bolder;
+            padding: 1px;
+            margin: auto;
+            width: 10%;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .reports-officers-add-btn:hover {
+            background: var(--color-3);
+        }
+
+       .manage-incidents-civilians-add-btn {
+            background: var(--color-4);
+            color: var(--color-2);
+            font-size: 18px;
+            font-weight: bolder;
+            margin: auto;
+            padding: 1px;
+            margin-bottom: 0px;
+            width: 10%;
+            text-align: center;
+            cursor: pointer;
+        }
+
+       .manage-incidents-civilians-add-btn:hover {
+            background: var(--color-3);
+        }
+
+        .manage-incidents-tags-add-btn {
+            background: var(--color-4);
+            color: var(--color-2);
+            font-size: 18px;
+            font-weight: bolder;
+            padding-top: 7.25px;
+            padding-bottom: 7.25px;
+            margin: auto;
+            width: 10%;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .manage-incidents-tags-add-btn:hover {
+            background: var(--color-3);
+        }
+
+        /* Drop Down */
+
+        label {
+            background: var(--color-2);
+        }
+    </style>
     <script>
         function DisplayMDT() {
             document.getElementById("manage-incidence-boxes").classList.add("active");
@@ -563,7 +837,7 @@
             document.getElementById("PointSystemcontent").classList.remove("PointSystem")
         }
         // Minize screen without loosing infomation
-        function NameClse() {
+        function Minimize() {
             document.getElementById("Name-close")
         }
         function VehicleClose() {
@@ -578,8 +852,8 @@
         <button id="characterButtonEdit" class="createdButtonEdit"><a class="fas fa-edit"></a> Edit</button>
         <button id="characterButtonDelete" class="createdButtonDelete"><a class="fas fa-trash-alt"></a></button> -->
         <div class="nav-link">
-            <div class="search-bar">
-                <input type="search" class="" id="">
+            <input type="date" placeholder="Lookup range" class="Incident-Lookup">
+            <div class="search-bar"><input type="search" class="" id="">
                 <button id="search-button" class="searched-button" type="submit"><a
                         class="fas fa-magnifying-glass"></a></button>
                 <button id="Create" class="Create-incident" type="button" onclick="DisplayMDT()"><a
@@ -614,27 +888,32 @@
             <button class="div-close" onclick="CloseMDT()">&minus;</button>
             <div class="IncidentLeftSide">
                 <!-- Container title -->
-                <div class="IncidentTitle">Incident Report: </div><span class="manage-incidents-title-input"></span><br><br>
+                <div class="IncidentTitle">Incident Report: </div><span
+                    class="manage-incidents-title-input"></span><br><br>
                 <!-- Incident Title -->
-                <div class="manage-incidents-title-input"><input placeholder=" "
-                    class="manage-incidents-title-input" id="manage-incidents-title-input">
+                <div class="manage-incidents-title-input"><input placeholder=" " class="manage-incidents-title-input"
+                        id="manage-incidents-title-input">
                 </div>
                 <br>
                 <!-- Loaction -->
-                <div class="manage-incidents-title-location"><input placeholder=" " class="manage-incidents-title-location" id="manage-incidents-title-location"></div>
+                <div class="manage-incidents-title-location"><input placeholder=" "
+                        class="manage-incidents-title-location" id="manage-incidents-title-location"></div>
                 <!-- Incident Debirf --><br>
                 <textarea class="manage-incidents-reports-content" placeholder=" "></textarea>
-                
+
                 <!-- Incidents-evidence -->
                 <br><br>
                 <div class="manage-incidents-evidence-container">
-                    <div class="manage-incidents-evidence-title">Evidence<i class="manage-incidents-evidence-add-btn fas fa-plus"></i></div>
-                    <div class="incidents-upload-input"><input id="incidents-upload-input" placeholder="Upload URL..."></div>
+                    <div class="manage-incidents-evidence-title">Evidence<i
+                            class="manage-incidents-evidence-add-btn fas fa-plus"></i></div>
+                    <div class="incidents-upload-input"><input id="incidents-upload-input" placeholder="Upload URL...">
                     </div>
-                <br> 
+                </div>
+                <br>
                 <!-- Officer Tags -->
                 <div class="associated-incidents-container">
-                    <div class="manage-incidents-officers-title">Officer Involvement<i class="reports-officers-add-btn fas fa-plus"></i></div>
+                    <div class="manage-incidents-officers-title">Officer Involvement<i
+                            class="reports-officers-add-btn fas fa-plus"></i></div>
                 </div>
                 <div class="manage-incidents-officers-holder">
                     <!--  -->
@@ -642,15 +921,17 @@
                 <br>
                 <!-- Civilain Tags -->
                 <div class="reports-civilians-tags-container">
-                    <div class="manage-incidents-civilians-title">Civilain Inlovement<i class="manage-incidents-civilians-add-btn fas fa-plus"></i></div>
+                    <div class="manage-incidents-civilians-title">Civilain Inlovement<i
+                            class="manage-incidents-civilians-add-btn fas fa-plus"></i></div>
                 </div>
                 <div class="manage-incidents-civilians-holder">
                     <!--  -->
                 </div>
-              <br>
+                <br>
                 <!-- incidents-tags -->
                 <div class="manage-incidents-tags-container">
-                    <div class="manage-incidents-tags-title">incidents tags<i class="manage-incidents-tags-add-btn fas fa-plus"></i></div>
+                    <div class="manage-incidents-tags-title">incidents tags<i
+                            class="manage-incidents-tags-add-btn fas fa-plus"></i></div>
                 </div>
                 <div class="manage-incidents-tags-holder">
                     <!--  -->
