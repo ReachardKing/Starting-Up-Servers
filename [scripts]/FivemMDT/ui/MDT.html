@@ -2,970 +2,348 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 </head>
+<style>
+  textarea {
+    resize: none;
+    width: 100%;
+    height: 40px;
+  }
+
+  /* Hire Functions */
+
+  /* Functions */
+
+  * {
+    overflow: hidden;
+    overflow-x: hidden;
+    text-transform: uppercase;
+    text-transform: capitalize;
+    outline: none;
+    resize: none;
+  }
+
+  .container {
+    margin: 15.5px;
+    border-radius: 25px;
+    border: 17px solid black;
+    background-color: black;
+    color: white;
+    padding: 50px;
+    position: absolute;
+    cursor: pointer;
+    overflow-y: scroll;
+  }
+
+  .container {
+    width: 542px;
+    height: 295px;
+    position: absolute;
+    transform: translate(-50%, -50%) scale(1);
+    padding: 10px;
+    top: 100%;
+    left: 75%;
+    margin-top: -250px;
+    margin-left: -400px;
+    margin-bottom: 20px;
+  }
+
+  .container2 {
+    margin: 15.5px;
+    border-radius: 25px;
+    border: 13px solid gray;
+    background-color: gray;
+    color: white;
+    padding: 50px;
+    position: absolute;
+    cursor: pointer;
+    overflow-y: scroll;
+  }
+
+  .container2 {
+    width: 542px;
+    height: fit-content;
+    box-sizing: border-box;
+    position: absolute;
+    transform: translate(-50%, -50%) scale(1);
+    padding: 10px;
+    top: 80%;
+    left: 75%;
+    margin-top: -250px;
+    margin-left: -400px;
+    margin-bottom: 20px;
+    cursor: pointer;
+
+  }
+
+  .Settings-body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 25px;
+    border: 17px solid black;
+    background-color: black;
+    color: white;
+    width: 437px;
+    height: 370px;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .Searched-body {
+    background: gray;
+    font-size: 20px;
+    width: 100%;
+    margin: 0px auto;
+    padding: 15px 14px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    position: relative;
+    bottom: -20px;
+  }
+
+  .Editing-body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    border-radius: 25px;
+    border: 17px solid grey;
+    background-color: grey;
+    color: white;
+    width: 530px;
+    height: fit-content;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+  }
+
+  p {
+    background: black;
+    color: white;
+    font-size: 20px;
+  }
+
+  h1 {
+    color: white;
+    background: white;
+    font-size: 20px;
+  }
+
+
+  .EditTopTextline {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 1) 15%, rgba(255, 255, 255, 1) 85%, rgba(0, 0, 0, 0.014) 100%);
+    height: 0.1vh;
+    width: 100%;
+    border: none;
+    border-radius: 2vh;
+  }
+
+  .close {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 1px;
+    width: 30px;
+    background: purple;
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 50%;
+  }
+
+
+  /* .scrollable {
+    white-space: normal;
+    padding: 8px 0px;
+    box-shadow: 0px 5px 10px rgb(0, 0, 0);
+    overflow-y: scroll;
+    overflow-x: hidden;
+  } */
+
+  .button {
+    background: gray;
+    font-size: 20px;
+    width: 100%;
+    margin: px auto;
+    padding: 9px 1px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    position: relative;
+    bottom: -20px;
+  }
+
+  .displaycontent {
+    height: 50%;
+    width: 83%;
+    margin: none;
+    padding: none;
+    width: 83%;
+  }
+
+  .Submit {
+    margin-left: 0.3vw;
+    background-color: rgb(8, 252, 69);
+    width: 8.6vh;
+    height: 3vh;
+    border-radius: 0.5vh;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .Cancel {
+    margin-left: 0.2vw;
+    height: 3vh;
+    background-color: rgb(236, 19, 19);
+    width: 4vw;
+    border-radius: 0.5vh;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  #characterButtonEdit {
+    border: none;
+    border-radius: 60%;
+    width: 5vh;
+    height: 10vh;
+    background-color: rgb(17, 113, 238);
+    color: white;
+    cursor: pointer;
+    backdrop-filter: blur(44px) saturate(180%);
+  }
+
+  #characterButtonDelete {
+    border: none;
+    border-radius: 60%;
+    width: 6vh;
+    height: 11vh;
+    background-color: rgb(236, 19, 19);
+    color: white;
+    cursor: pointer;
+    backdrop-filter: blur(44px) saturate(180%);
+  }
+
+  #version {
+    width: 70px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background: aqua;
+    top: 50%;
+    left: 63%;
+    border-radius: 5px;
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.25);
+    font-size: 20px;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  input:focus {
+    background: purple;
+  }
+
+  select {
+    width: 100%;
+  }
+
+  textarea:focus {
+    background: purple;
+  }
+
+  /* Serts */
+  #Serts-content {
+    background: grey;
+    color: white;
+    border-radius: 5px;
+    border: 1px;
+    padding: 3px 12px;
+    position: fixed;
+    transform: translate(50%, -50%) scale(0);
+  }
+
+  #Serts-content textarea {
+    resize: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  #Serts-content.active {
+    transform: translate(50%, -50%) scale(1);
+  }
+</style>
+
+<script>
+  function OPENEditSert() {
+    document.getElementById("Serts-content").classList.add("active");
+  }
+  function CloseEditSerts() {
+    document.getElementById("Serts-content").classList.remove("active");
+  }
+</script>
 
 <body>
-    <script src="https://use.fontawesome.com/releases/v6.4.0/js/all.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <script src="MDT.js" type="text/javascript"></script>
-    <script src="DisplayContent.js" type="text/javascript"></script>
-    
-    <style>
-        @import url('https://use.fontawesome.com/releases/v6.4.0/css/all.css');
-
-        * {
-            overflow: hidden;
-            overflow-x: hidden;
-            text-transform: capitalize;
-            text-transform: uppercase;
-            outline: none;
-            border: none;
-            resize: none;
-        }
-
-        :root {
-            ---color-1: lightblue;
-            --color-2: black;
-            --color-3: white;
-            --color-4: rgba(128, 128, 128);
-            --color-5: rgb(255, 255, 255);
-            --color-6: purple;
-            --color-7: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 1) 15%, rgba(255, 255, 255, 1) 85%, rgba(0, 0, 0, 0.014) 100%);
-            --color-8: darkblue;
-            --color-9: rgb(236, 19, 19);
-            --color-10: blue;
-            --color-11: #cac7ff;
-            --color-12: darkred;
-            --color-13: ;
-        }
-
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(2, 2, 2, 0);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: rgba(99, 99, 99, 0.575);
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgb(128, 128, 128);
-            border-radius: 10px;
-        }
-
-        .Container {
-            margin: 16.5px;
-            border: none;
-            background: var(---color-1);
-            color: white;
-            padding: 40%;
-            position: absolute;
-        }
-
-        .Container {
-            width: 1377px;
-            height: 579px;
-            position: absolute;
-            transform: translate(-43%, -34%) scale(1);
-            padding: 10px;
-            top: 105%;
-            left: 71%;
-            margin-top: -250px;
-            margin-left: -400px;
-            margin-bottom: -20px;
-            /*80, 71 */
-            /* 90, 80 */
-        }
-
-        .IncidentLeftSide {
-            width: 50%;
-            float: left;
-            text-align: center;
-
-        }
-
-        .IncidentRightSide {
-            width: 50%;
-            display: inline-block;
-            text-align: center;
-        }
-
-        .overlay {
-            top: 0px;
-            left: 0px;
-            height: 100vh;
-            width: 30vw;
-            background: rgb(128, 128, 128);
-            display: none;
-            cursor: pointer;
-            pointer-events: none;
-        }
-
-        .manage-incidents-container .div-close {
-            cursor: pointer;
-            position: absolute;
-            right: 20px;
-            top: 1px;
-            background: transparent;
-            border: none;
-            color: purple;
-            font-weight: 600;
-            text-align: center;
-            border-radius: 50%;
-        }
-
-        .IncidentBoxCtreatorTextLine {
-            background: rgb(255, 255, 255);
-            background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 1) 15%, rgba(255, 255, 255, 1) 85%, rgba(0, 0, 0, 0.014) 100%);
-            height: 0.1vh;
-            width: 95%;
-            border: none;
-            border-radius: 2vh;
-        }
-
-        Header {
-            display: block;
-            padding: 2% 6% auto;
-            justify-content: space-between;
-            align-items: center;
-            color: white;
-            cursor: pointer;
-        }
-
-        Header {
-            top: 0%;
-            left: 0%;
-            width: 189px;
-            height: 87vh;
-            background: darkblue;
-            transform: translate(-7%, -9.4%);
-        }
-
-        .Header-link {
-            flex: 1;
-            text-align: left;
-        }
-
-        .Header-link ul li {
-            list-style: none;
-            display: inline-block;
-            padding: 13px 1px;
-            position: relative;
-        }
-
-        .Header-link ul li p {
-            color: white;
-            text-decoration: none;
-            font-size: 20px;
-        }
-
-        .Header-link ul li::after {
-            width: 0%;
-            height: 2px;
-            margin: auto;
-            display: block;
-            transform: 0.5s;
-        }
-
-        .Header-link ul li:hover::after {
-            width: 100%;
-        }
-
-        .Header-link>p {
-            margin: 0;
-            padding: 0;
-            color: white;
-            text-align: right;
-            background: darkblue;
-            text-align: left;
-        }
-
-        .nav-link {
-            background: darkblue;
-            width: 88%;
-            height: auto;
-            margin-top: 15px;
-            transform: translate(14%, -40%);
-            margin-right: -15px;
-            margin-bottom: 4px;
-
-        }
-
-        /* Styling of div tages */
-        .displaynamecontent,
-        .displayvehiclecontent,
-        .displayincidentcontent,
-        .displaypointsystem {
-            margin: 15px;
-            background: transparent;
-            padding: 10%;
-            cursor: pointer;
-            position: absolute;
-            overflow-y: scroll;
-
-        }
-
-        /* Alignment of div tages */
-        .displaynamecontent.Name {
-            transform: translate(-40.8%, -34.4%) scale(0);
-        }
-
-        .displayvehiclecontent.vehicle {
-            transform: translate(-43.2%, -27.5%) scale(0);
-        }
-
-        .displayincidentcontent.Incident {
-            transform: translate(-45.7%, -56.1%) scale(0);
-        }
-
-        .displaypointsystem.Pointsystem {
-            transform: translate(-45.7%, -56.1%) scale(0);
-        }
-
-        /* .close {
-            cursor: pointer;
-            position: absolute;
-            right: 20px;
-            top: 1px;
-            width: 30px;
-            background: transparent;
-            border: none;
-            color: black;
-            font-weight: 600;
-            text-align: center;
-            border-radius: 50%;
-        } */
-
-
-        .search-bar {
-            width: 38%;
-            display: flex;
-            background: rgba(255, 255, 255, 0.2);
-            align-items: center;
-            padding: 0px 0px;
-            float: right;
-            backdrop-filter: blur(44px) saturate(180%);
-
-        }
-
-        .search-bar input {
-            border: none;
-            width: 100%;
-            flex: 1;
-            padding: 2px;
-            font-size: 20px;
-            color: #cac7ff;
-        }
-
-        ::placeholder {
-            color: #cac7ff;
-        }
-
-        .search-bar button {
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            background: transparent;
-            color: white;
-            cursor: pointer;
-            backdrop-filter: blur(44px) saturate(180%);
-        }
-
-        .search-bar .Create-incident {
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            background: transparent;
-            color: white;
-            cursor: pointer;
-            backdrop-filter: blur(44px) saturate(180%);
-        }
-
-        .CreateButtonView {
-            border: none;
-            margin-left: 0.2vw;
-            background: transparent;
-            height: 5vh;
-            width: 10vh;
-            color: rgb(236, 19, 19);
-            cursor: pointer;
-            transition: 0.3s;
-            backdrop-filter: blur(44px) saturate(180%);
-        }
-
-        .CreateButtonView:hover {
-            background: blue;
-            opacity: 0.7;
-            transition: 0.3;
-        }
-
-        .createdButtonEdit {
-            margin-left: 0.2vw;
-            height: 5vh;
-            width: 10vh;
-            background: rgb(128, 128, 128);
-            border: none;
-            border-radius: 0.5vh;
-            transition: 0.3s;
-        }
-
-        .createdButtonEdit:hover {
-            background: darkblue;
-            opacity: 0.7;
-            transition: 0.3s;
-        }
-
-        .createdButtonDelete {
-            margin-left: 0.2vw;
-            height: 5vh;
-            width: 10vh;
-            background: rgb(236, 19, 19);
-            border: none;
-            border-radius: 0.5vh;
-            transition: 0.3s;
-        }
-
-        .createdButtonDelete:hover {
-            background: darkred;
-            opacity: 0.7;
-            transition: 0.3s;
-        }
-
-        .div-button {
-            border: none;
-            background: transparent;
-            font-size: 20px;
-            width: 100%;
-            margin: 0px auto;
-            padding: 9px 1px;
-            margin-bottom: 20px;
-            right: 123px;
-            cursor: pointer;
-            bottom: -20px;
-        }
-
-        .Search-link {
-            background: darkblue;
-            border: none;
-            width: 100%;
-            margin-top: 15px;
-            margin-right: -15px;
-            margin-bottom: 5px;
-        }
-
-        .Search-link {
-            transform: translate(15.2%, -181%);
-        }
-
-        .Search-bar input {
-            width: 100%;
-            border: none;
-            flex: 1;
-            padding: 1px;
-            font-size: 20px;
-            color: #cacaca;
-        }
-
-        ::placeholder {
-            color: #cacaca;
-        }
-
-        .Search-bar button image {
-            width: 25px;
-        }
-
-        .Search-bar button {
-            border: 0;
-            border-radius: 50%;
-            width: 60%;
-            height: 60%;
-            background: transparent;
-            color: white;
-            cursor: pointer;
-            backdrop-filter: blur(44px) saturate(180%);
-        }
-
-        .Search-bar #name-button {
-            border: none;
-            border-radius: 50%;
-            width: 60%;
-            height: 60%;
-            background: transparent;
-            color: white;
-            cursor: pointer;
-            backdrop-filter: blur(44px) saturate(180%);
-        }
-
-        .Search-bar #Vehicle-button {
-            border: none;
-            border-radius: 50%;
-            width: 60%;
-            height: 60%;
-            background: transparent;
-            color: white;
-            cursor: pointer;
-            backdrop-filter: blur(44px) saturate(180%);
-        }
-
-        .Search-bar #Incident-button {
-            border: none;
-            border-radius: 50%;
-            width: 60%;
-            height: 60%;
-            background: transparent;
-            color: white;
-            cursor: pointer;
-            backdrop-filter: blur(44px) saturate(180%);
-        }
-
-        #Name-close {
-            cursor: pointer;
-            position: absolute;
-            right: 30px;
-            top: 1%;
-            width: 30px;
-            background: transparent;
-            border: none;
-            color: var(--color-2);
-            font-weight: 600;
-            text-align: center;
-            border-radius: 50%;
-        }
-
-        #Vehicle-close {
-            cursor: pointer;
-            position: absolute;
-            right: 30px;
-            top: 1%;
-            width: 30px;
-            background: transparent;
-            border: none;
-            color: var(--color-2);
-            font-weight: 600;
-            text-align: center;
-            border-radius: 50%;
-        }
-
-        #incident-close {
-            cursor: pointer;
-            position: absolute;
-            right: 30px;
-            top: 1%;
-            width: 30px;
-            background: transparent;
-            border: none;
-            color: var(--color-2);
-            font-weight: 600;
-            text-align: center;
-            border-radius: 50%;
-        }
-
-        .Cancel {
-            border: none;
-            margin-left: 0.2vh;
-            background: transparent;
-            width: 10vh;
-            height: 4vh;
-            border-radius: 0.5vh;
-            cursor: pointer;
-        }
-
-        .Save {
-            border: none;
-            margin-left: 0.2vh;
-            background: transparent;
-            width: 7vh;
-            height: 4vh;
-            border-radius: 0.2vh;
-            cursor: pointer;
-        }
-
-        .Save-jail {
-            cursor: pointer;
-            background: transparent;
-        }
-
-        .SearchName {
-            background: transparent;
-            cursor: pointer;
-        }
-
-        .SearchName:hover {
-            background: var(--color-9);
-        }
-
-        .SearchVehicle {
-            background: transparent;
-            cursor: pointer;
-        }
-
-        .SearchVehicle:hover {
-            background: var(--color-9);
-        }
-
-        .IncidentReoprt {
-            background: transparent;
-            cursor: pointer;
-        }
-
-        .IncidentReoprt:hover {
-            background: var(--color-9);
-        }
-
-        .Point-system {
-            background: transparent;
-            cursor: pointer;
-        }
-
-        .Point-system:hover {
-            background: var(--color-9);
-        }
-    </style>
-    <style>
-        /* Incident / others */
-        /* Incident Reoprt */
-        .manage-incidents-container {
-            width: 60%;
-            background: var(--color-4);
-            transition: 0.3s;
-            transform: translate(50%, -100%)scale(0);
-        }
-
-        #manage-incidence-boxes.active {
-            width: 60%;
-            background: var(--color-4);
-            transform: translate(50%, -100%)scale(1);
-        }
-
-        #manage-incidence-boxes.active {
-            display: block;
-            transition: all 300ms ease-in-out;
-            transform: translate(50%, -100%)scale(1);
-        }
-
-        .IncidentTitle {
-            cursor: pointer;
-            position: absolute;
-            left: 20px;
-            top: 1px;
-            background: transparent;
-            color: var(--color-6);
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .manage-incidents-title-input {
-            color: var(--color-2);
-            font-weight: lighter;
-            width: 95%;
-            margin: auto;
-            align-items: center;
-        }
-
-        /* incidents reports */
-        .manage-incidents-reports-content {
-            width: 91%;
-            margin: auto;
-            margin-top: 1px;
-            max-height: 30vh;
-            background: var(--color-5);
-            columns: var(--color-3);
-            font-size: 15px;
-            padding: 1px;
-            overflow-y: scroll;
-        }
-
-        /* Location */
-        .manage-incidents-title-location {
-            color: var(--color-2);
-            font-weight: lighter;
-            width: 95%;
-            margin: auto;
-            align-items: center;
-        }
-
-        /* Evidence */
-        .manage-incidents-evidence-container {
-            display: flex;
-            flex-direction: column;
-            border: 1px solid var(--color-3);
-            color: var(--color-3);
-            font-size: 18px;
-            margin: auto;
-            font-weight: bolder;
-            width: 90%;
-            height: fit-content;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .manage-incidents-evidence-title {
-            background: var(--color-4);
-            color: var(--color-3);
-            font-size: 18px;
-            font-weight: bolder;
-            margin: auto;
-            width: 95%;
-            align-items: center;
-        }
-
-        .incidents-upload-input {
-            background: var(--color-3);
-            color: var(--color-8);
-            text-align: center;
-            margin: auto;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        /* officer report Involvemdnt */
-        .reports-officers-tags-container {
-            display: flex;
-            flex-direction: column;
-            background: var(--color-1);
-            color: var(--color-3);
-            width: 100%;
-            text-align: center;
-            max-height: 150px;
-            margin-top: 1px;
-            text-align: center;
-        }
-
-        .manage-incidents-officers-title {
-            background: var(--color-4);
-            color: var(--color-3);
-            font-size: 18px;
-            font-weight: bolder;
-            padding-top: 1px;
-            padding-bottom: 1px;
-            text-align: center;
-            width: 95%;
-            align-items: center;
-        }
-
-        .manage-incidents-officers-holder {
-            margin: auto;
-            width: 95%;
-            margin-top: 1px;
-            max-height: 14vh;
-            overflow-y: scroll;
-        }
-
-        /* civilians tages */
-        .reports-civilians-tags-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .manage-incidents-civilians-title {
-            background: var(--color-4);
-            color: var(--color-3);
-            font-size: 18px;
-            font-weight: bolder;
-            text-align: center;
-            margin: auto;
-            width: 95%;
-            align-items: center;
-        }
-
-        .manage-incidents-civilians-holder {
-            overflow-y: scroll;
-            margin: auto;
-            width: 95%;
-            max-height: 14vh;
-        }
-
-        .manage-incidents-civilians-add-btn {
-            background: var(--color-4);
-            color: var(--color-3);
-            font-size: 18px;
-            font-weight: bolder;
-            margin: auto;
-            width: 95%;
-            align-items: center;
-            text-align: center;
-        }
-
-        .manage-incidents-civilians-add-btn :hover {
-            background: var(--color-3);
-        }
-
-        /* incidents-tags */
-        .manage-incidents-tags-container {
-            display: flex;
-            flex-direction: column;
-            border: 2px solid var(--color-3);
-            background: var(--color-4);
-            color: var(--color-3);
-            font-size: 18px;
-            font-weight: bolder;
-            margin: auto;
-            width: 95%;
-            height: fit-content;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .manage-incidents-tags-title {
-            background: var(--color-4);
-            color: var(--color-3);
-            font-size: 18px;
-            font-weight: bolder;
-            text-align: center;
-            margin: auto;
-            width: 95%;
-            align-items: center;
-        }
-
-        .manage-incidents-tags-holder {
-            overflow-y: scroll;
-            overflow: auto;
-            margin: auto;
-            width: 1px;
-            max-height: 14vh;
-        }
-
-        /* None Inportant */
-        .manage-incidents-evidence-add-btn {
-            background: var(--color-4);
-            color: var(--color-2);
-            font-size: 18px;
-            font-weight: bolder;
-            margin: auto;
-            margin-top: 1px;
-            margin-right: 2px;
-            width: 10%;
-            text-align: center;
-        }
-
-        .manage-incidents-evidence-add-btn:hover {
-            background: var(--color-3);
-        }
-
-        .reports-officers-add-btn {
-            background: var(--color-4);
-            color: var(--color-2);
-            font-size: 18px;
-            font-weight: bolder;
-            padding: 1px;
-            margin: auto;
-            width: 10%;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .reports-officers-add-btn:hover {
-            background: var(--color-3);
-        }
-
-       .manage-incidents-civilians-add-btn {
-            background: var(--color-4);
-            color: var(--color-2);
-            font-size: 18px;
-            font-weight: bolder;
-            margin: auto;
-            padding: 1px;
-            margin-bottom: 0px;
-            width: 10%;
-            text-align: center;
-            cursor: pointer;
-        }
-
-       .manage-incidents-civilians-add-btn:hover {
-            background: var(--color-3);
-        }
-
-        .manage-incidents-tags-add-btn {
-            background: var(--color-4);
-            color: var(--color-2);
-            font-size: 18px;
-            font-weight: bolder;
-            padding-top: 7.25px;
-            padding-bottom: 7.25px;
-            margin: auto;
-            width: 10%;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .manage-incidents-tags-add-btn:hover {
-            background: var(--color-3);
-        }
-
-        /* Drop Down */
-
-        label {
-            background: var(--color-2);
-        }
-    </style>
-    <script>
-        function DisplayMDT() {
-            document.getElementById("manage-incidence-boxes").classList.add("active");
-        }
-        function CloseMDT() {
-            document.getElementById("manage-incidence-boxes").classList.remove("active");
-        }
-        // Displaying of div boxes
-        function SearchName() {
-            document.getElementById("Namecontent").classList.add("Name");
-        }
-        function SearchVehicle() {
-            document.getElementById("Vehiclecontent").classList.add("vehicle");
-        }
-        function IncidentReport() {
-            document.getElementById("Incidentcontent").classList.add("Incident");
-        }
-        function PointSystem() {
-            document.getElementById("PointSystemcontent").classList.add("PointSystem")
-        }
-
-        function CloseAll() {
-            document.getElementById("Namecontent").classList.remove("Name");
-            document.getElementById("Vehiclecontent").classList.remove("vehicle");
-            document.getElementById("Incidentcontent").classList.remove("Incident");
-            document.getElementById("PointSystemcontent").classList.remove("PointSystem")
-        }
-        // Minize screen without loosing infomation
-        function Minimize() {
-            document.getElementById("Name-close")
-        }
-        function VehicleClose() {
-            document.getElementById("Vehicle-close")
-        }
-        function IncidentClose() {
-            document.getElementById("Incident-close")
-        }
-    </script>
-    <div class="Container" id="MDTcontainer">
-        <!-- <button class="CreateButtonView" id="View"><a class="fa fa-eye"></a></button>
-        <button id="characterButtonEdit" class="createdButtonEdit"><a class="fas fa-edit"></a> Edit</button>
-        <button id="characterButtonDelete" class="createdButtonDelete"><a class="fas fa-trash-alt"></a></button> -->
-        <div class="nav-link">
-            <input type="date" placeholder="Lookup range" class="Incident-Lookup">
-            <div class="search-bar"><input type="search" class="" id="">
-                <button id="search-button" class="searched-button" type="submit"><a
-                        class="fas fa-magnifying-glass"></a></button>
-                <button id="Create" class="Create-incident" type="button" onclick="DisplayMDT()"><a
-                        class="fas fa-plus-circle"></a></button>
-                <button class="close">&times;</button>
-            </div>
-        </div>
-        <Header>
-            <div class="Header-link">
-                <ul>
-                    <p>DashBoard</p>
-                    <li><button class="SearchName" onclick="SearchName()"><a class="fas fa-user"></a> Search
-                            Name</button></li>
-                    <li><button class="SearchVehicle" onclick="SearchVehicle()"><i class="fa-solid fa-car"></i> Search
-                            Vehicle</button></li>
-                    <li><button class="IncidentReoprt" onclick="IncidentReport()"><i class="fa fa-bars"></i> Incident
-                            Lookup</button></li>
-                    <li><button class="Point-system" onclick="PointSystem()">Points System</button></li>
-                </ul>
-            </div>
-        </Header>
-        <div class="displaynamecontent" id="Namecontent"></div>
-
-        <div class="displayvehiclecontent" id="Vehiclecontent"></div>
-
-        <div class="displaypointsystem" id="PointSystemcontent"></div>
-
-        <div class="displayincidentcontent" id="Incidentcontent"></div>
-
-        <div class="manage-incidents-container" id="manage-incidence-boxes">
-            <!-- <div class="overlay"></div> -->
-            <button class="div-close" onclick="CloseMDT()">&minus;</button>
-            <div class="IncidentLeftSide">
-                <!-- Container title -->
-                <div class="IncidentTitle">Incident Report: </div><span
-                    class="manage-incidents-title-input"></span><br><br>
-                <!-- Incident Title -->
-                <div class="manage-incidents-title-input"><input placeholder=" " class="manage-incidents-title-input"
-                        id="manage-incidents-title-input">
-                </div>
-                <br>
-                <!-- Loaction -->
-                <div class="manage-incidents-title-location"><input placeholder=" "
-                        class="manage-incidents-title-location" id="manage-incidents-title-location"></div>
-                <!-- Incident Debirf --><br>
-                <textarea class="manage-incidents-reports-content" placeholder=" "></textarea>
-
-                <!-- Incidents-evidence -->
-                <br><br>
-                <div class="manage-incidents-evidence-container">
-                    <div class="manage-incidents-evidence-title">Evidence<i
-                            class="manage-incidents-evidence-add-btn fas fa-plus"></i></div>
-                    <div class="incidents-upload-input"><input id="incidents-upload-input" placeholder="Upload URL...">
-                    </div>
-                </div>
-                <br>
-                <!-- Officer Tags -->
-                <div class="associated-incidents-container">
-                    <div class="manage-incidents-officers-title">Officer Involvement<i
-                            class="reports-officers-add-btn fas fa-plus"></i></div>
-                </div>
-                <div class="manage-incidents-officers-holder">
-                    <!--  -->
-                </div>
-                <br>
-                <!-- Civilain Tags -->
-                <div class="reports-civilians-tags-container">
-                    <div class="manage-incidents-civilians-title">Civilain Inlovement<i
-                            class="manage-incidents-civilians-add-btn fas fa-plus"></i></div>
-                </div>
-                <div class="manage-incidents-civilians-holder">
-                    <!--  -->
-                </div>
-                <br>
-                <!-- incidents-tags -->
-                <div class="manage-incidents-tags-container">
-                    <div class="manage-incidents-tags-title">incidents tags<i
-                            class="manage-incidents-tags-add-btn fas fa-plus"></i></div>
-                </div>
-                <div class="manage-incidents-tags-holder">
-                    <!--  -->
-                </div>
-                <br>
-                <br>
-                <div class="IncidentLeftSide">
-                    <label>Created By:</label>
-                    <div class="ShowName">
-                        <hr class="IncidentBoxCtreatorTextLine">
-                    </div>
-                    <label>Last Updated By:</label>
-                    <div class="LatestUpdate">
-                        <hr class="IncidentBoxCtreatorTextLine">
-                    </div>
-                </div>
-                <div class="IncidentRightSide">
-                    <label>Date Created:</label>
-                    <div class="DateCreated">
-                        <hr class="IncidentBoxCtreatorTextLine">
-                    </div>
-                    <label>Last updated by:</label>
-                    <div class="UpdatedBy">
-                        <hr class="IncidentBoxCtreatorTextLine">
-                    </div>
-                </div>
-            </div>
-            <div class="IncidentRightSide"></div>
-            <div class="div-button">
-                <button type="reset" class="Cancel" onclick="CloseMDT()">Cancel</button>
-                <button type="submit" class="Save" onclick="CloseMDT()">Save</button>
-                <button type="submit" class="Save-jail" onclick="CloseMDT()">Save & jail</button>
-            </div>
-        </div>
+  <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+  <script src="OpenPoliceMenus.js" type="text/javascript"></script>
+  <script src="Confirem.js" type="text/javascript"></script>
+  <script src="Fired.js" type="text/javascript"></script>
+  <script src="Info.js" type="text/javascript"></script>
+
+
+  <div class="container" id="container">
+    <p>Police Manaement</p>
+    <button type="button" class="close">&minus;</button>
+    <input id="Name" type="text" placeholder="Please Enter Player Name" />
+    <br><br> <input id="callsign" placeholder="CallSign" min="1" max="1000">
+    <br><br>
+    <select class="position">
+        <option></option>
+        <option>Trooper</option>
+        <option> Officer</option>
+        <option> Senior Officer</option>
+        <option> Corporal</option>
+        <option> Lieutenant</option>
+        <option> Supervisor</option>
+        <option> Chief</option>
+        <option> Command</option>
+      </select><br><br>
+    <!-- Serts eg air, intersepter and the rest-->
+    <textarea class="Serts" id="options" placeholder="Serts"></textarea>
+    <div class="button">
+      <button class="Submit" id="Update" id="Hire">Confirm</button>
+      <button class="Cancel" type="reset">Cancel</button>
+      <div class="This" id="version"> V: 3.4.0</div>
+    </div>
+  </div>
+
+  <div class="container2" id="container2">
+    <p>Who would you like to fire?</p>
+    <button class="close">&minus;</button>
+    <input id="Searched-name" type="search" placeholder="Please Enter Player Name" />
+    <div class="displaycontent"></div>
+  </div>
+
+  <div class="Edit-main">
+    <div class="Editing-body">
+      <button class="close">&minus;</button>
+      <p>View Employees list</p>
+      <hr class="EditTopTextline">
+      <p>Select to edit player info</p>
+      <div class="displaycontent"><!--  --></div>
+    </div>
+  </div>
 </body>
 
 </html>
