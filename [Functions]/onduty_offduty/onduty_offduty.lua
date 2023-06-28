@@ -37,7 +37,6 @@ RegisterCommand("Policeoff", function()
     end 
 end)
 
-
 function Policeonduty()
     IsCop = true
     local player = GetPlayerPed(-1)
@@ -65,9 +64,10 @@ end
 
 -- [ New  -447.33, 6013.26, 31.72] for pleto
 -- {{New 440.85, -981.11, 30.69} -- Mission Row
---  [New 1853.7, 3688.03, 34.27] -- Sandy Shores
+--  [New 1853.38, 3687.95, 34.27] -- Sandy Shores
 -- [629.62, -1.16, 82.77] -- VineWood Bowl
  
+-- expots["Clockon"]:Clockon()
 --Sign on/off--
 
 Citizen.CreateThread(function()
@@ -75,43 +75,43 @@ Citizen.CreateThread(function()
 		local player = GetPlayerPed(-1)
 		local pl = GetEntityCoords(player)
 			Citizen.Wait(0)
-				if GetDistanceBetweenCoords(pl.x, pl.y, pl.z, 1853.7, 3688.03, 34.27) < 1.0 and IsCop == false then -- <-- Sandy Shores --
-				   DrawText3Ds(1853.7, 3688.03, 34.27, "~w~Press [~g~E~w~] To Go on duty")
-				if IsControlJustReleased(1, 38) then
-                     expots["Clockon"]:Clockon()
+				if GetDistanceBetweenCoords(pl.x, pl.y, pl.z, 1853.38, 3687.95, 34.27) < 1.0 and IsCop == false then -- <-- Sandy Shores --
+				   DrawText3Ds(1853.38, 3687.95, 34.27, "~w~Press [~g~E~w~] To Go on duty")
+                   exports["Clockon"]:Clockon()
+				if IsControlJustReleased(1, 38) then 
                     Policeonduty()
 			end
 		elseif 
-			Vdist2(pl.x, pl.y, pl.z,  -447.33, 6013.26, 31.72) < 1.0 and IsCop == false then -- <-- Paleto Bay --
-				 DrawText3Ds( -447.33, 6013.26, 31.72, "~w~Press [~g~E~w~] To Go on duty")
-				if IsControlJustReleased(1, 38) then
-                     expots["Clockon"]:Clockon()
+			Vdist2(pl.x, pl.y, pl.z, -447.33, 6013.26, 31.72) < 1.0 and IsCop == false then -- <-- Paleto Bay --
+				 DrawText3Ds(-447.33, 6013.26, 31.72, "~w~Press [~g~E~w~] To Go on duty")
+                 exports["Clockon"]:Clockon()
+				if IsControlJustReleased(1, 38) then 
 					Policeonduty()
 				end
 		elseif 
-			Vdist2(pl.x, pl.y, pl.z,  440.85, -981.11, 30.69) < 1.0 and IsCop == false then -- <-- Mission Row --
-				 DrawText3Ds( 440.85, -981.11, 30.69, "~w~Press [~g~E~w~] To Go on duty")
-				if IsControlJustReleased(1, 38) then
-                     expots["Clockon"]:Clockon()
-					Policeonduty()
+			Vdist2(pl.x, pl.y, pl.z, 440.85, -981.11, 30.69) < 1.0 and IsCop == false then -- <-- Mission Row --
+				 DrawText3Ds(440.85, -981.11, 30.69, "~w~Press [~g~E~w~] To Go on duty")
+                 exports["Clockon"]:Clockon()
+				if IsControlJustReleased(1, 38) then 
+					Policeoffduty()
 				end				
-				elseif GetDistanceBetweenCoords(pl.x, pl.y, pl.z, 1853.7, 3688.03, 34.27) < 1.0 and IsCop == true then  
-				DrawText3Ds(1853.7, 3688.03, 34.27, "~w~Press [~g~E~w~] To Go off duty")
-			if IsControlJustReleased(1, 38) then
-                 expots["Clockon"]:Clockon()
-                Policeoffduty()
+				elseif GetDistanceBetweenCoords(pl.x, pl.y, pl.z, 1853.38, 3687.95, 34.27) < 1.0 and IsCop == true then  
+				DrawText3Ds(1853.38, 3687.95, 34.27, "~w~Press [~g~E~w~] To Go off duty")
+                exports["Clockon"]:Clockon()
+			if IsControlJustReleased(1, 38) then 
+				Policeoffduty()
 				end
 			elseif GetDistanceBetweenCoords(pl.x, pl.y, pl.z, -447.33, 6013.26, 31.72) < 1.0 and IsCop == true then 
 				DrawText3Ds(-447.33, 6013.26, 31.72, "~w~Press [~g~E~w~] To Go off duty")
-			if IsControlJustReleased(1, 38) then
-                 expots["Clockon"]:Clockon()
-                Policeoffduty()
+                exports["Clockon"]:Clockon()
+			if IsControlJustReleased(1, 38) then 
+				Policeoffduty()
 				end
-			elseif GetDistanceBetweenCoords(pl.x, pl.y, pl.z,  440.85, -981.11, 30.69) < 1.0 and IsCop == true then 
-				DrawText3Ds( 440.85, -981.11, 30.69, "~w~Press [~g~E~w~] To Go off duty")
-			if IsControlJustReleased(1, 38) then
-                 expots["Clockon"]:Clockon()
-                Policeoffduty()						
+			elseif GetDistanceBetweenCoords(pl.x, pl.y, pl.z, 440.85, -981.11, 30.69) < 1.0 and IsCop == true then 
+				DrawText3Ds(440.85, -981.11, 30.69, "~w~Press [~g~E~w~] To Go off duty")
+                exports["Clockon"]:Clockon()
+			if IsControlJustReleased(1, 38) then 
+				Policeoffduty()							
 			end 		
 		end
 	end
@@ -268,11 +268,10 @@ end
 -- 1690.08, 3581.64, 35.62 SandyShores Firesation
 -- 356.9, -593.86, 28.78 Los Santos Hospital
 Citizen.CreateThread(function()
-	while true do
+	while true do Citizen.Wait(0)
 		local player = GetPlayerPed(-1)
 		local pl = GetEntityCoords(player, true)
-		Wait(0)
-			if Vdist2(pl.x, pl.y, pl.z, -379.95, 6118.63, 31.85) < 1.0 and IsEMS == false then 
+		if Vdist2(pl.x, pl.y, pl.z, -379.95, 6118.63, 31.85) < 1.0 and IsEMS == false then 
 			DrawText3Ds(-379.95, 6118.63, 31.85, "~w~Press [~g~E~w~] To go on duty as EMS OR [~g~G~w~] To go onduty as fire")
 			if IsControlJustReleased(1, 38) then 
 				emsonduty()
@@ -280,8 +279,7 @@ Citizen.CreateThread(function()
 				IsControlJustReleased(1, 183) then 
 				fireonduty()
 			end
-			elseif
-			Vdist2(pl.x, pl.y, pl.z, 1690.08, 3581.64, 35.62) < 1.0 and IsEMS == false then 
+        elseif Vdist2(pl.x, pl.y, pl.z, 1690.08, 3581.64, 35.62) < 1.0 and IsEMS == false then 
 			DrawText3Ds(1690.08, 3581.64, 35.62, "~w~Press [~g~E~w~] To go on duty as EMS OR [~g~G~w~] To go onduty as fire")
 			if IsControlJustReleased(1, 38) then 
 				emsonduty()
@@ -289,8 +287,7 @@ Citizen.CreateThread(function()
 			IsControlJustReleased(1, 183) then
 				fireonduty()	
 			end
-			elseif 
-			Vdist2(pl.x, pl.y, pl.z, 356.9, -593.86, 28.78) < 1.0 and IsEMS == false then 
+        elseif Vdist2(pl.x, pl.y, pl.z, 356.9, -593.86, 28.78) < 1.0 and IsEMS == false then 
 			DrawText3Ds(356.9, -593.86, 28.78, "~w~Press [~g~E~w~] To go on duty as EMS OR [~g~G~w~] To go onduty as fire")
 			if IsControlJustReleased(1, 38) then 
 				emsonduty()
@@ -298,23 +295,20 @@ Citizen.CreateThread(function()
 				IsControlJustReleased(1, 183) then 
 				fireonduty()
 			end			
-			elseif
-			Vdist2(pl.x, pl.y, pl.z, 1690.08, 3581.64, 35.62) < 1.0 and IsEMS == true then 
-			DrawText3Ds(1690.08, 3581.64, 35.62, "~w~Press [~g~E~w~] To go off duty ")
+        elseif Vdist2(pl.x, pl.y, pl.z, 1690.08, 3581.64, 35.62) < 1.0 and IsEMS == true then 
+            DrawText3Ds(1690.08, 3581.64, 35.62, "~w~Press [~g~E~w~] To go off duty ")
 			if IsControlJustReleased(1, 38) then 
-			emsoffduty()
+                emsoffduty()
 			end
-			elseif
-			Vdist2(pl.x, pl.y, pl.z, -379.95, 6118.63, 31.85) < 1.0 and IsEMS == true then 
+        elseif Vdist2(pl.x, pl.y, pl.z, -379.95, 6118.63, 31.85) < 1.0 and IsEMS == true then 
 			DrawText3Ds(-379.95, 6118.63, 31.85, "~w~Press [~g~E~w~] To go off duty ")
 			if IsControlJustReleased(1, 38) then 
 			emsoffduty()
 			end
-			elseif
-			Vdist2(pl.x, pl.y, pl.z, 356.9, -593.86, 28.78) < 1.0 and IsEMS == true then 
+        elseif Vdist2(pl.x, pl.y, pl.z, 356.9, -593.86, 28.78) < 1.0 and IsEMS == true then 
 			DrawText3Ds(356.9, -593.86, 28.78, "~w~Press [~g~E~w~] To go off duty ")
 			if IsControlJustReleased(1, 38) then 
-			emsoffduty()
+                emsoffduty()
 			end							
 		end
 	end
