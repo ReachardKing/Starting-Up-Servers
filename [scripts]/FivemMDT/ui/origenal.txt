@@ -1,0 +1,498 @@
+ .Container {
+            margin: 16.5px;
+            border: none;
+            background:var(---color-1);
+            color: white;
+            padding: 40%;
+            position: absolute;
+        }
+
+        .Container {
+            width: 1377px;
+            height: auto;
+            position: absolute;
+            transform: translate(-43%, -50%) scale(1);
+            padding: 10px;
+            top: 89%;
+            left: 71%;
+            margin-top: -250px;
+            margin-left: -400px;
+            /* 72, 71 */
+            /* 90, 80 */
+        }
+
+        .div-boxes {
+            margin: 15px;
+            border: 30px solid var(--color-3);
+            background: white;
+            color: white;
+            padding: 10%;
+            position:absolute;
+        }
+
+        .div-boxes {
+            width: 50%;
+            height: auto;
+            transform: translate(-50%, -40%) scale(0);
+            top: 50%;
+            left: 58%;
+            overflow-y: scroll;
+            bottom: -20px;
+        }
+
+        .overlay {
+            top: 0px;
+            left: 0px;
+            height: 100vh;
+            width: 30vw;
+            background: rgb(128, 128, 128);
+            display: none;
+            cursor: pointer;
+            pointer-events: none;
+        }
+    
+        .IncidentLeftSide {
+            flex-basis: 50%;
+            float: left;
+        }
+        
+        .IncidentRightSide {
+            flex-basis: 50%;
+            display: inline-block;
+        }
+
+        #boxes.active{
+            display: block;
+            transition: all 300ms ease-in-out;
+            transform: translate(-50%, -40%) scale(1);
+        }
+
+        .div-close {
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 1px;
+            background: transparent;
+            border: none;
+            color: purple;
+            font-weight: 600;
+            text-align: center;
+            border-radius: 50%;
+        }
+
+        .IncidentBoxCtreatorTextLine {
+            background: rgb(255, 255, 255);
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255,255,255,1) 15%, rgba(255,255,255,1) 85%, rgba(0, 0, 0, 0.014) 100%);
+            height: 0.1vh;
+            width: 95%;
+            border: none;
+            border-radius: 2vh;
+        }
+
+        Header {
+            display:block;
+            padding: 2% 6% auto;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            cursor: pointer;
+        }
+
+        Header {
+            top: 0%;
+            left: 0%;
+            width: 189px;
+            height: 87vh;
+            background: darkblue;
+            transform: translate(-7%, -9.4%);
+        }
+
+        .Header-link {
+            flex: 1;
+            text-align: left;
+        }
+
+        .Header-link ul li {
+            list-style: none;
+            display: inline-block;
+            padding: 13px 1px;
+            position: relative;
+        }
+
+        .Header-link ul li p {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .Header-link ul li::after {
+            width: 0%;
+            height: 2px;
+            margin:auto;
+            display: block;
+            transform: 0.5s;
+        }
+
+        .Header-link ul li:hover::after {
+            width: 100%;
+        }
+
+        .Header-link > p {
+            margin: 0;
+            padding: 0;
+            border: none;
+            color: white;
+            text-align: right;
+            background: darkblue;
+            text-align: left;
+        }
+
+        .nav-link {
+            background: darkblue;
+            border: none;
+            width: 88%;
+            height: auto;
+            margin-top: 15px;
+            transform: translate(14%, -40%);
+            margin-right: -15px;
+            margin-bottom: 4px;
+
+        }
+
+        /* Styling of div tages */
+        .displaynamecontent,
+        .displayvehiclecontent,
+        .displayincidentcontent,
+        .displaypointsystem {
+            margin: 15px;
+            background: transparent;
+            padding: 10%;
+            cursor: pointer;
+            position: absolute;
+            overflow-y: scroll;
+
+        }
+
+        /* Alignment of div tages */
+        .displaynamecontent.Name {
+            transform: translate(-40.8%, -34.4%) scale(0);
+        }
+
+        .displayvehiclecontent.vehicle {
+            transform: translate(-43.2%, -27.5%) scale(0);
+        }
+
+        .displayincidentcontent.Incident {
+            transform: translate(-45.7%, -56.1%) scale(0);
+        }
+
+        .displaypointsystem.Pointsystem {
+            transform: translate(-45.7%, -56.1%) scale(0);
+        }
+
+        /* .close {
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 1px;
+            width: 30px;
+            background: transparent;
+            border: none;
+            color: black;
+            font-weight: 600;
+            text-align: center;
+            border-radius: 50%;
+        } */
+
+        .search-bar {
+            width: 38%;
+            display: flex;
+            background: rgba(255, 255, 255, 0.2);
+            align-items: center;
+            padding: 0px 0px;
+            float: right;
+            backdrop-filter: blur(44px) saturate(180%);
+
+        }
+
+        .search-bar input {
+            border: none;
+            width: 100%;
+            flex: 1;
+            padding: 2px;
+            font-size: 20px;
+            color: #cac7ff;
+        }
+
+        ::placeholder {
+            color: #cac7ff;
+        }
+
+        .search-bar button image {
+            width: 25px;
+        }
+
+        .search-bar button {
+            border: 0;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            backdrop-filter: blur(44px) saturate(180%);
+        }
+
+        .search-bar .Create-incident {
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            backdrop-filter: blur(44px) saturate(180%);
+        }
+
+        .CreateButtonView {
+            border: none;
+            margin-left: 0.2vw;
+            background: transparent;
+            height: 5vh;
+            width: 10vh;
+            color: rgb(236, 19, 19);
+            cursor: pointer;
+            transition: 0.3s;
+            backdrop-filter: blur(44px) saturate(180%);
+        }
+
+        .CreateButtonView:hover {
+            background: blue;
+            opacity: 0.7;
+            transition: 0.3;
+        }
+
+        .createdButtonEdit {
+            margin-left: 0.2vw;
+            height: 5vh;
+            width: 10vh;
+            background: rgb(128, 128, 128);
+            border: none;
+            border-radius: 0.5vh;
+            transition: 0.3s;
+        }
+
+        .createdButtonEdit:hover {
+            background: darkblue;
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+
+        .createdButtonDelete {
+            margin-left: 0.2vw;
+            height: 5vh;
+            width: 10vh;
+            background: rgb(236, 19, 19);
+            border: none;
+            border-radius: 0.5vh;
+            transition: 0.3s;
+        }
+
+        .createdButtonDelete:hover {
+            background: darkred;
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+
+        .div-button {
+            border: none;
+            background: transparent;
+            font-size: 20px;
+            width: 100%;
+            margin: 0px auto;
+            padding: 9px 1px;
+            margin-bottom: 20px;
+            right: 123px;
+            cursor: pointer;
+            position: relative;
+            bottom: -20px;
+        }
+
+        .Search-link {
+            background: darkblue;
+            border: none;
+            width: 100%;
+            margin-top: 15px;
+            margin-right: -15px;
+            margin-bottom: 5px;
+        }
+
+        .Search-link {
+            transform: translate(15.2%, -181%);
+        }
+
+        .Search-bar input {
+            width: 100%;
+            border: none;
+            flex: 1;
+            padding: 1px;
+            font-size: 20px;
+            color: #cacaca;
+        }
+
+        ::placeholder {
+            color: #cacaca;
+        }
+
+        .Search-bar button image {
+            width: 25px;
+        }
+
+        .Search-bar button {
+            border: 0;
+            border-radius: 50%;
+            width: 60%;
+            height: 60%;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            backdrop-filter: blur(44px) saturate(180%);
+        }
+
+        .Search-bar #name-button {
+            border: none;
+            border-radius: 50%;
+            width: 60%;
+            height: 60%;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            backdrop-filter: blur(44px) saturate(180%);
+        }
+
+        .Search-bar #Vehicle-button {
+            border: none;
+            border-radius: 50%;
+            width: 60%;
+            height: 60%;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            backdrop-filter: blur(44px) saturate(180%);
+        }
+
+        .Search-bar #Incident-button {
+            border: none;
+            border-radius: 50%;
+            width: 60%;
+            height: 60%;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            backdrop-filter: blur(44px) saturate(180%);
+        }
+
+        #Name-close {
+            cursor: pointer;
+            position: absolute;
+            right: 30px;
+            top: 1%;
+            width: 30px;
+            background: transparent;
+            border: none;
+            color: black;
+            font-weight: 600;
+            text-align: center;
+            border-radius: 50%;
+        }
+
+        #Vehicle-close {
+            cursor: pointer;
+            position: absolute;
+            right: 30px;
+            top: 1%;
+            width: 30px;
+            background: transparent;
+            border: none;
+            color: black;
+            font-weight: 600;
+            text-align: center;
+            border-radius: 50%;
+        }
+
+        #incident-close {
+            cursor: pointer;
+            position: absolute;
+            right: 30px;
+            top: 1%;
+            width: 30px;
+            background: transparent;
+            border: none;
+            color: black;
+            font-weight: 600;
+            text-align: center;
+            border-radius: 50%;
+        }
+
+        .Cancel {
+            border: none;
+            margin-left: 0.2vh;
+            background: transparent;
+            width: 10vh;
+            height: 4vh;
+            border-radius: 0.5vh;
+            cursor: pointer;
+        }
+
+        .Save {
+            border: none;
+            margin-left: 0.2vh;
+            background: transparent;
+            width: 7vh;
+            height: 4vh;
+            border-radius: 0.2vh;
+            cursor: pointer;
+        }
+
+        .Save-jail {
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .SearchName {
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .SearchName:hover {
+            background: rgb(236, 19, 19);
+        }
+
+        .SearchVehicle {
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .SearchVehicle:hover {
+            background: rgb(236, 19, 19);
+        }
+
+        .IncidentReoprt {
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .IncidentReoprt:hover {
+            background: rgb(236, 19, 19);
+        }
+
+        .Point-system {
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .Point-system:hover {
+            background: rgb(236, 19, 19);
+        }
+
+    </style>

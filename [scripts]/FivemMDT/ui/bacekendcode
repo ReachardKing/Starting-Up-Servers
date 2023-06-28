@@ -1,0 +1,56 @@
+<!-- Involvements -->
+<select >
+    <option> Officer</option>
+    <option> Senior Officer</option>
+    <option> Corporal</option>
+    <option> Lieutenant</option>
+    <option> Supervisor</option>
+    <option> Chief</option>
+    <option>Command</option>
+    <option>lawyer</option>
+    <option>Victim</option>
+</select>
+
+<!-- Add tags -->
+<option></option>
+<option>Areest</option>
+<option>Citation</option>
+<option>Warrent</option>
+<option>Investegation</option>
+<!-- Nav Tags -->
+<input type="checkbox">Areest
+<input type="checkbox">Citation
+<input type="checkbox">Warrent
+<input type="checkbox">Investegation
+
+<style>
+    :root {
+    ---color-1: lightblue;
+    --color-2: black;
+    --color-3: white;
+    --color-4: rgba(128, 128, 128);
+    --color-5: rgb(255, 255, 255);
+    --color-6: purple;
+    --color-7: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255,255,255,1) 15%, rgba(255,255,255,1) 85%, rgba(0, 0, 0, 0.014) 100%);
+    --color-8: darkblue;
+    --color-9: rgb(236, 19, 19);
+    --color-10:blue;
+    --color-11:#cac7ff;
+    --color-12:  darkred;
+    --color-13: ;
+}
+</style>
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(2, 2, 2, 0);
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(99, 99, 99, 0.575);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(128, 128, 128);
+    border-radius: 10px;
+}
