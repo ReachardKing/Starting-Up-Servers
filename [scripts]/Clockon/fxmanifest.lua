@@ -25,6 +25,9 @@ client_scripts {
 	'client/*.lua'
 }
 
+export 'Clockon'
+export 'ShowNUI'
+
 server_scripts {
 	'server/*.lua'
 }
