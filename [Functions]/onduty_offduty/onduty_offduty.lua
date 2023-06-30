@@ -52,8 +52,8 @@ RegisterCommand("Policeoff", function()
 end)
 
 function Policeonduty()
-	IsCop = true	
-	SetPedArmour(player, 200)
+	IsCop = true
+	SetPedArmour(GetPlayerPed(-1), 200)
 	GiveWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_COMBATPISTOL"), 1000, false)
 	GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_COMBATPISTOL"), GetHashKey("COMPONENT_AT_PI_FLSH"))
 	GiveWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_FLARE"), 5, false)
@@ -64,9 +64,8 @@ end
 
 function Policeoffduty()
 	IsCop = false
-	RemoveAllPedWeapons(player, true)
+	RemoveAllPedWeapons(GetPlayerPed(-1), true)
 end
-
 
 --Sign on/off--
 
@@ -77,12 +76,12 @@ Citizen.CreateThread(function()
 			Citizen.Wait(0)
 				if GetDistanceBetweenCoords(pl.x, pl.y, pl.z, 1853.38, 3687.95, 34.27) < 1.0 and IsCop == false then -- <-- Sandy Shores --
 				   DrawText3Ds(1853.38, 3687.95, 34.27, "~w~Press [~g~E~w~] To Go on duty")
-				if IsControlJustReleased(1, 38) then 
+				if IsControlJustReleased(1, 38) then
 					Policeonduty()
 			end
 		elseif 
-			Vdist2(pl.x, pl.y, pl.z, -447.92, 6013.75, 31.72) < 1.0 and IsCop == false then -- <-- Paleto Bay --
-				 DrawText3Ds(-447.92, 6013.75, 31.72, "~w~Press [~g~E~w~] To Go on duty")
+			Vdist2(pl.x, pl.y, pl.z, -447.66, 6013.56, 31.72) < 1.0 and IsCop == false then -- <-- Paleto Bay --
+				 DrawText3Ds(-447.66, 6013.56, 31.72, "~w~Press [~g~E~w~] To Go on duty")
 				if IsControlJustReleased(1, 38) then 
 					Policeonduty()
 				end
@@ -90,6 +89,7 @@ Citizen.CreateThread(function()
 			Vdist2(pl.x, pl.y, pl.z, 440.85, -981.11, 30.69) < 1.0 and IsCop == false then -- <-- Mission Row --
 				 DrawText3Ds(440.85, -981.11, 30.69, "~w~Press [~g~E~w~] To Go on duty")
 				if IsControlJustReleased(1, 38) then 
+					SendNUIMessage({action = "Show"})
 					Policeonduty()
 				end				
 				elseif GetDistanceBetweenCoords(pl.x, pl.y, pl.z, 1853.38, 3687.95, 34.27) < 1.0 and IsCop == true then  
@@ -97,8 +97,8 @@ Citizen.CreateThread(function()
 			if IsControlJustReleased(1, 38) then 
 				Policeoffduty()
 				end
-			elseif GetDistanceBetweenCoords(pl.x, pl.y, pl.z, -449.85, 60.22, 31.72) < 1.0 and IsCop == true then 
-				DrawText3Ds(-447.92, 6013.75, 31.72, "~w~Press [~g~E~w~] To Go off duty")
+			elseif GetDistanceBetweenCoords(pl.x, pl.y, pl.z, -447.66, 6013.56, 31.72) < 1.0 and IsCop == true then 
+				DrawText3Ds(-447.66, 6013.56, 31.72, "~w~Press [~g~E~w~] To Go off duty")
 			if IsControlJustReleased(1, 38) then 
 				Policeoffduty()
 				end
@@ -113,40 +113,16 @@ end)
 
 function fireonduty()
 	IsEMS = true
-	local player = GetPlayerPed(-1)
-	local model = GetHashKey("s_m_y_fireman_01") -- Change model name here <-
-	IsCop = false
-			RequestModel(model)
-			while not HasModelLoaded(model) do
-			RequestModel(model)
-			Citizen.Wait(0)
-		end
-			   SetPlayerModel(PlayerId(), model)
-			SetModelAsNoLongerNeeded(model)
-			SetPlayerModel(player, GetHashKey(model))
-			SetModelAsNoLongerNeeded(model)					
-			GiveWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_FLASHLIGHT"), 1000, false)
-			GiveWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_FLASHLIGHT"), 1000, false)
-
+	IsCop = false				
+	GiveWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_FLASHLIGHT"), 1000, false)
+	GiveWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_FLASHLIGHT"), 1000, false)
 end
 
 function emsonduty()
 	IsEMS = true
-	  local player = GetPlayerPed(-1)
-	local model = GetHashKey("s_m_m_paramedic_01") -- Change model name here <-
-	IsCop = false
-			RequestModel(model)
-			while not HasModelLoaded(model) do
-			RequestModel(model)
-			Citizen.Wait(0)
-		end
-			   SetPlayerModel(PlayerId(), model)
-			SetModelAsNoLongerNeeded(model)
-			SetPlayerModel(player, GetHashKey(model))
-			SetModelAsNoLongerNeeded(model)					
-			GiveWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_FLASHLIGHT"), 1000, false)
-			GiveWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_FLASHLIGHT"), 1000, false)
-
+	IsCop = false					
+	GiveWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_FLASHLIGHT"), 1000, false)
+	GiveWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_FLASHLIGHT"), 1000, false)
 end
 
 local vehs = {
@@ -171,27 +147,9 @@ end)
 
 
 function emsoffduty()
-IsEMS = false
-		local model = GetHashKey("mp_m_freemode_01") -- Change model name here <-
-			RequestModel(model)
-			while not HasModelLoaded(model) do
-			RequestModel(model)
-			Citizen.Wait(0)
-		end
-			   SetPlayerModel(PlayerId(), model)
-			SetModelAsNoLongerNeeded(model)
-			SetPlayerModel(player, GetHashKey(model))
-			SetModelAsNoLongerNeeded(model)
-			SetPedComponentVariation(GetPlayerPed(-1), 8, 1, 0, 0) --shirt
-			SetPedComponentVariation(GetPlayerPed(-1), 11, 3, 7, 0) --torso2 (shirt/jacket)
-			SetPedComponentVariation(GetPlayerPed(-1), 9, 13, 0, 0) --armour
-			SetPedComponentVariation(GetPlayerPed(-1), 3, 0, 0, 0) --arms
-			SetPedComponentVariation(GetPlayerPed(-1), 4, 35, 0, 0) --trousers
-			SetPedComponentVariation(GetPlayerPed(-1), 7, 8, 0, 0) --chain
-			SetPedComponentVariation(GetPlayerPed(-1), 5, 0, 0, 0) --gloves
-			SetPedComponentVariation(GetPlayerPed(-1), 6, 3, 0, 0) --shoes
-			local player = GetPlayerPed(-1)
-			RemoveAllPedWeapons(player, true)
+	IsEMS = false
+	local player = GetPlayerPed(-1)
+	RemoveAllPedWeapons(player, true)
 end
 
 -- Sandy Spawn --
