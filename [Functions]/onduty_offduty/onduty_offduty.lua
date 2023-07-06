@@ -2,6 +2,11 @@
 IsCop = false
 IsEMS = false
 
+function ShowNotification( text )
+    SetNotificationTextEntry( "STRING" )
+    AddTextComponentString( text )
+    DrawNotification( false, false )
+end
 
 function DrawText3Ds(x, y, z, text)
 	local onScreen,_x,_y=World3dToScreen2d(x,y,z)
@@ -16,24 +21,6 @@ function DrawText3Ds(x, y, z, text)
 	DrawText(_x,_y)
 end
 
-
-function drawTxt(x,y ,width,height,scale, text, r,g,b,a, outline)
-    SetTextFont(0)
-    SetTextProportional(0)
-    SetTextScale(scale, scale)
-    SetTextColour(r, g, b, a)
-    SetTextDropShadow(0, 0, 0, 0,255)
-    SetTextEdge(1, 0, 0, 0, 255)
-    SetTextDropShadow()
-    if(outline)then
-        SetTextOutline()
-    end
-    SetTextEntry("STRING")
-    AddTextComponentString(text)
-    DrawText(x - width/2, y - height/2 + 0.005)
-end
-
-
 --------------------------------------------------------------------------------
 ------------------------------Police System-------------------------------------
 --------------------------------------------------------------------------------
@@ -42,29 +29,32 @@ end
 RegisterCommand("Policeon", function()
     if not IsCop then
         IsCop = true
+		ShowNotification("You are now onduty")
     end
 end)
 
 RegisterCommand("Policeoff", function()
     if IsCop == true then
-        IsCop = false  
+        IsCop = false
+		ShowNotification("You are now offduty")
     end 
 end)
 
 function Policeonduty()
 	IsCop = true
-	SetPedArmour(GetPlayerPed(-1), 200)
 	GiveWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_COMBATPISTOL"), 1000, false)
 	GiveWeaponComponentToPed(GetPlayerPed(-1), GetHashKey("WEAPON_COMBATPISTOL"), GetHashKey("COMPONENT_AT_PI_FLSH"))
 	GiveWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_FLARE"), 5, false)
 	GiveWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_NIGHTSTICK"), 1000, false)
 	GiveWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_FLASHLIGHT"), 1000, false)
 	GiveWeaponToPed(GetPlayerPed(-1), GetHashKey("WEAPON_STUNGUN"), 1000, false)
+	ShowNotification("You are now onduty")
 end
 
 function Policeoffduty()
 	IsCop = false
 	RemoveAllPedWeapons(GetPlayerPed(-1), true)
+	ShowNotification("You are now offduty")
 end
 
 --Sign on/off--
@@ -89,23 +79,22 @@ Citizen.CreateThread(function()
 			Vdist2(pl.x, pl.y, pl.z, 440.85, -981.11, 30.69) < 1.0 and IsCop == false then -- <-- Mission Row --
 				 DrawText3Ds(440.85, -981.11, 30.69, "~w~Press [~g~E~w~] To Go on duty")
 				if IsControlJustReleased(1, 38) then 
-					SendNUIMessage({action = "Show"})
 					Policeonduty()
 				end				
 				elseif GetDistanceBetweenCoords(pl.x, pl.y, pl.z, 1853.38, 3687.95, 34.27) < 1.0 and IsCop == true then  
 				DrawText3Ds(1853.38, 3687.95, 34.27, "~w~Press [~g~E~w~] To Go off duty")
 			if IsControlJustReleased(1, 38) then 
 				Policeoffduty()
-				end
+			end
 			elseif GetDistanceBetweenCoords(pl.x, pl.y, pl.z, -447.66, 6013.56, 31.72) < 1.0 and IsCop == true then 
 				DrawText3Ds(-447.66, 6013.56, 31.72, "~w~Press [~g~E~w~] To Go off duty")
 			if IsControlJustReleased(1, 38) then 
 				Policeoffduty()
-				end
+			end
 			elseif GetDistanceBetweenCoords(pl.x, pl.y, pl.z, 440.85, -981.11, 30.69) < 1.0 and IsCop == true then 
 				DrawText3Ds(440.85, -981.11, 30.69, "~w~Press [~g~E~w~] To Go off duty")
 			if IsControlJustReleased(1, 38) then 
-				Policeoffduty()							
+				Policeoffduty()
 			end 		
 		end
 	end
@@ -137,14 +126,12 @@ local vehs = {
 
 
 Citizen.CreateThread(function()
-while true do
-	Citizen.Wait(0)
-	if IsPlayerFreeAiming(GetPlayerPed(-1)) then 
-		print("aiming")
-	end
-end 
+	while true do Citizen.Wait(0)
+		if IsPlayerFreeAiming(GetPlayerPed(-1)) then 
+			print("aiming")
+		end
+	end 
 end)
-
 
 function emsoffduty()
 	IsEMS = false
@@ -269,53 +256,68 @@ while true do
 		DrawText3Ds(-379.95, 6118.63, 31.85, "~w~Press [~g~E~w~] To go on duty as EMS OR [~g~G~w~] To go onduty as fire")
 		if IsControlJustReleased(1, 38) then 
 			emsonduty()
+			ShowNotification("You are now onduty")
 		elseif 
 			IsControlJustReleased(1, 183) then 
 			fireonduty()
+			ShowNotification("You are now onduty")
 		end
 		elseif
 		Vdist2(pl.x, pl.y, pl.z, 1690.08, 3581.64, 35.62) < 1.0 and IsEMS == false then 
 		DrawText3Ds(1690.08, 3581.64, 35.62, "~w~Press [~g~E~w~] To go on duty as EMS OR [~g~G~w~] To go onduty as fire")
 		if IsControlJustReleased(1, 38) then 
 			emsonduty()
+			ShowNotification("You are now onduty")
 		elseif
 		IsControlJustReleased(1, 183) then
-			fireonduty()	
+			fireonduty()
+			ShowNotification("You are now onduty")
 		end
 		elseif 
 		Vdist2(pl.x, pl.y, pl.z, 356.9, -593.86, 28.78) < 1.0 and IsEMS == false then 
 		DrawText3Ds(356.9, -593.86, 28.78, "~w~Press [~g~E~w~] To go on duty as EMS OR [~g~G~w~] To go onduty as fire")
 		if IsControlJustReleased(1, 38) then 
 			emsonduty()
+			ShowNotification("You are now onduty")
 		elseif 
 			IsControlJustReleased(1, 183) then 
 			fireonduty()
+			ShowNotification("You are now onduty")
 		end			
 		elseif
 		Vdist2(pl.x, pl.y, pl.z, 1690.08, 3581.64, 35.62) < 1.0 and IsEMS == true then 
 		DrawText3Ds(1690.08, 3581.64, 35.62, "~w~Press [~g~E~w~] To go off duty ")
 		if IsControlJustReleased(1, 38) then 
 		emsoffduty()
+		ShowNotification("You are now offduty")
 		end
 		elseif
 		Vdist2(pl.x, pl.y, pl.z, -379.95, 6118.63, 31.85) < 1.0 and IsEMS == true then 
 		DrawText3Ds(-379.95, 6118.63, 31.85, "~w~Press [~g~E~w~] To go off duty ")
 		if IsControlJustReleased(1, 38) then 
 		emsoffduty()
+		ShowNotification("You are now offduty")
 		end
 		elseif
 		Vdist2(pl.x, pl.y, pl.z, 356.9, -593.86, 28.78) < 1.0 and IsEMS == true then 
 		DrawText3Ds(356.9, -593.86, 28.78, "~w~Press [~g~E~w~] To go off duty ")
 		if IsControlJustReleased(1, 38) then 
 		emsoffduty()
+		ShowNotification("You are now offduty")
 		end							
 	end
 end
 end)
 
 RegisterCommand("vest", function(source, args)
-local pl = GetEntityCoords(GetPlayerPed(-1))
+	local pl = GetEntityCoords(GetPlayerPed(-1))
 	if IsCop == true and GetDistanceBetweenCoords(pl.x, pl.y, pl.z, 1853.38, 3687.95, 34.27) < 3.0 then -- Only able to get vest at sandy PD
-    SetPedArmour(GetPlayerPed(-1), 100)
+		SetPedArmour(GetPlayerPed(-1), 100)
     end
+end)
+
+RegisterCommand("vest", function(source, args)
+	exports['progressBars']:startUI(300000, "Equipng Vest")
+	Citizen.Wait(300000)
+	SetPedArmour(GetPlayerPed(-1), 100)
 end)
