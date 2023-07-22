@@ -43,7 +43,7 @@ AddEventHandler("Handsup", function()
 				SetCurrentPedWeapon(lPed, GetHashKey("WEAPON_UNARMED"), true)
 			end
 		else
-			TriggerEvent("chatMessage", "", {255, 0, 0}, "You can't raise your hands when your handcuffed")
+			TriggerEvent("chat:addMessage", "", {255, 0, 0}, "You can't raise your hands when your handcuffed")
 		end
 	end
 end)
