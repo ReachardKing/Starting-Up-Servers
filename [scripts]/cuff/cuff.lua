@@ -24,7 +24,7 @@ AddEventHandler("Handcuff", function()
 end)
 
 RegisterNetEvent("Handsup")
-AddEventHandler("Handsup", function()
+AddEventHandler("Handsup", function(source, args, raw)
 	local lPed = GetPlayerPed(-1)
 	if DoesEntityExist(lPed) then
 		if not IsEntityPlayingAnim(lPed, "mp_arresting", "idle", 3) then
@@ -43,7 +43,7 @@ AddEventHandler("Handsup", function()
 				SetCurrentPedWeapon(lPed, GetHashKey("WEAPON_UNARMED"), true)
 			end
 		else
-			TriggerEvent("chat:addMessage", "", {255, 0, 0}, "You can't raise your hands when your handcuffed")
+			TriggerEvent("chat:addMessage", source, {color = {{255, 0, 0}, multiline = false, args = {"You can't raise your hands when your handcuffed"}})
 		end
 	end
 end)
