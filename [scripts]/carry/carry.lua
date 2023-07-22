@@ -24,7 +24,7 @@ AddEventHandler("carry", function()
 end)
 
 RegisterNetEvent("carry")
-AddEventHandler("carry", function()
+AddEventHandler("carry", function(source, args, raw)
 	local lPed = GetPlayerPed(-1)
 	if DoesEntityExist(lPed) then
 		if not IsEntityPlayingAnim(lPed, "mp_carry", "idle", 3) then
@@ -43,7 +43,7 @@ AddEventHandler("carry", function()
 				SetCurrentPedWeapon(lPed, GetHashKey("WEAPON_UNARMED"), true)
 			end
 		else
-			TriggerEvent("chatMessage", "", {255, 0, 0}, "You can't raise your hands when your carried")
+			TriggerEvent("chat:addMessage", source, {color = {255, 0, 0}, multiline = false, args = {"You can't raise your hands when your carried"}})
 		end
 	end
 end)
