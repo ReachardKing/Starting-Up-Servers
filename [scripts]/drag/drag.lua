@@ -55,7 +55,7 @@ RegisterCommand("drag", function(source, args, fullCommand)
 		TriggerEvent("chat:addMessage", {
 			color = {255, 0, 0},
 			multiline = true,
-			args = {"Drag", "Please get closer to the target!"},
+			args = {"Drag", "Please get closer to the target!"}
 		})
 	end
 end, false)
