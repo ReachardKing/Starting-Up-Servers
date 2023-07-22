@@ -8,6 +8,10 @@ AddEventHandler("chatMessage", function(source, name, message)
 			TriggerClientEvent("carry", tPID)
 		end
 	end
+	if cm[1] == "/hu" then
+		CancelEvent()
+		TriggerClientEvent("Handsup", source)
+	end
 end)
 
 function stringsplit(inputstr, sep)
