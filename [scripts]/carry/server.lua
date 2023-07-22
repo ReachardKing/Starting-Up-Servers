@@ -5,13 +5,8 @@ AddEventHandler("chatMessage", function(source, name, message)
 		CancelEvent()
 		if tablelength(cm) > 1 then
 			local tPID = tonumber(cm[2])
-			TriggerClientEvent("Handcuff", tPID)
+			TriggerClientEvent("carry", tPID)
 		end
-	end
-
-	if cm[1] == "/cr" then
-		CancelEvent()
-		TriggerClientEvent("Handsup", source)
 	end
 end)
 
