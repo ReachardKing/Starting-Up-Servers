@@ -62,6 +62,12 @@ Citizen.CreateThread(function()
 			DisableControlAction(1, 140, true)
 			DisableControlAction(1, 141, true)
 			DisableControlAction(1, 142, true)
+			DisableControlAction(1, 32, true) --[[ "W" key ]]
+			DisableControlAction(1, 34, true) --[[ "A" key ]] 
+			DisableControlAction(1, 33, true) --[[ "S" key ]]
+			DisableControlAction(1, 35, true) --[[ "D" key ]]
+			DisableControlAction(1, 37, true) --[[ "Tab" key ]]
+			DisableControlAction(1, 55, true) --[[ "SPACEBAR" key ]] 
 			SetPedPathCanUseLadders(GetPlayerPed(PlayerId()), false)
 			if IsPedInAnyVehicle(GetPlayerPed(PlayerId()), false) then
 				DisableControlAction(0, 59, true)
