@@ -1,5 +1,9 @@
 
-
+Citizen.createThread(function()
+    while true do 
+        Citizen.Wait(9)
+    end
+end)
 function loadAnimDict( dict )
     while ( not HasAnimDictLoaded( dict ) ) do
         RequestAnimDict( dict )
