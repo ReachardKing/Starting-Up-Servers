@@ -1,1 +1,22 @@
 
+
+function loadAnimDict( dict )
+    while ( not HasAnimDictLoaded( dict ) ) do
+        RequestAnimDict( dict )
+        Citizen.Wait( 0 )
+    end
+end
+
+function loadAnimDict( dict )
+    while ( not HasAnimDictLoaded( dict ) ) do
+        RequestAnimDict( dict )
+        Citizen.Wait( 5 )
+    end
+end 
+
+function loadAnimDict(dict)
+    RequestAnimDict(dict)
+    while (not HasAnimDictLoaded(dict)) do        
+        Citizen.Wait(1)
+    end
+end
