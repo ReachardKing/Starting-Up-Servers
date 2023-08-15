@@ -23,12 +23,12 @@ $(()=> {
 
         $(".Trash").click(function (e) { 
             e.preventDefault();
-            $(`https://EvidencePupOut/Trash`, JSON.stringify({}))
+            $(`https://jailer/Submit`, JSON.stringify({}))
         });
 
         $(".Evidence").click(function (e) { 
             e.preventDefault();
-            $(`https://EvidencePupOut/Evidence`, JSON.stringify({}))
+            $(`https://jailer/Trash`, JSON.stringify({}))
         });
         
         $(".Evidence-locker").click(function (e) { 
