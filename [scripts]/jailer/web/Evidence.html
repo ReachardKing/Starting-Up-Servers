@@ -16,7 +16,66 @@
             overflow: hidden;
             overflow-y: quto;
         }
+        .manage-jail-container {
+            width:61%;
+            hight:71%;
+            background: ;
+            transition: 0.3;
+            overflow-y: scroll;
+            tranaform:translate(50%, -155%) scale(1);
+        }
+        
+        .manage-jail-container .div-close {
+            cursor:pointer;
+            position:absolute;
+            right:20px;
+            top:1px;
+            background:transparent;
+            border:none;
+            color:purple;
+            font-weight:60%;
+            border-radius:50%;
+        }
+        
+        .button {
+            background:grey;
+            font-size:20px;
+            width:100%;
+            margin:1px auto;
+            padding: 9px 1px;
+            cursor:pointer;
+            position:relative;
+            button:-20px;
+        }
+        
+        .Submit {
+            margin-left:0.3vw;
+            background:rgba(8, 252, 69);
+            width:8.6vh;
+            hight:3vh;
+            boder-radius:0.5vh;
+            tansition:0.3s;
+            cursor:pointer;
+        }
+        
+        .Cancel {
+            margin-left:0.3vw;
+            hight:3vh;
+            background: rgba(236, 19, 19);
+            width:4vh;
+            cursor:pointer;
+        }
+        
     </style>
     <script src="Evidence.js"></script>
+    <div class="manage-jail-container">
+        <button class="div-close"></button>
+        <input placeholder="Title Name" style="width: 90%; margin: 25px 0 10px -23px;" id="manage-incide-ail-title-input>
+        <div class="manage-list"></div>
+        <div class="button">
+            <button class="Submit" id=""></button>
+            <button class="Cancel" id=""></button>
+        </div>
+    </div>
 </body>
 </html>
