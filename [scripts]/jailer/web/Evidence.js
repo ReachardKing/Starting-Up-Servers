@@ -21,19 +21,14 @@ $(()=> {
             }
         }
 
-        $(".Trash").click(function (e) { 
+        $(".Submit").click(function (e) { 
             e.preventDefault();
-            $(`https://jailer/Submit`, JSON.stringify({}))
+            $(`https://jailer/Jail,JSON.stringify({}))
         });
 
-        $(".Evidence").click(function (e) { 
+        $(".cancel").click(function (e) { 
             e.preventDefault();
-            $(`https://jailer/Trash`, JSON.stringify({}))
-        });
-        
-        $(".Evidence-locker").click(function (e) { 
-            e.preventDefault();
-            $(`https://EvidencePupOutEvidence-locker`, JSON.stringify({}))
+            $(`https://jailer/cancel`, JSON.stringify({}))
         });
     })
 })
