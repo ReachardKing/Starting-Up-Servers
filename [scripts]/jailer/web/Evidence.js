@@ -2,9 +2,9 @@
 $(()=> {
     function display(bool) {
         if (bool) {
-            $(".EvidencePupOut").show()
+            $(".manage-jail-containe").show()
         } else {
-            $(".EvidencePupOut").hide()
+            $(".manage-jail-containe").hide()
         }
     }
     
@@ -13,7 +13,7 @@ $(()=> {
     window.addEventListener("message", (event)=> {
         var item = event.data
 
-        if (item != undefined && item.action == 'Evidence') {
+        if (item != undefined && item.action == 'Jail') {
             if (item.visible == true ) {
                 display(true)
             } else {
@@ -23,10 +23,10 @@ $(()=> {
 
         $(".Submit").click(function (e) { 
             e.preventDefault();
-            $(`https://jailer/Jail,JSON.stringify({}))
+            $(`https://jailer/Jail, JSON.stringify({}))
         });
 
-        $(".cancel").click(function (e) { 
+        $(".Cancel").click(function (e) { 
             e.preventDefault();
             $(`https://jailer/cancel`, JSON.stringify({}))
         });
