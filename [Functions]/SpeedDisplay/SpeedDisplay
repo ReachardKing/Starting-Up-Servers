@@ -10,52 +10,18 @@ function notify(string)
 end
 
 -- Speed_Display
-local StartSpeed   = "35"
-local SpeedVirables = {"40", "50", "60", "70", "80", "90", "100", "110", "120", "130", "140", "150", "160", "170", "180", "190", "200"}
-local currentSpeed = GetEntitySpeed(GetVehiclePedIsIn(GetPlayerPed(-1), false))
-local hudname      = "KPH" -- Change this to What ever name thst is sutable for the display
-local speeding = false
---  find a way to show eather KPH or MPH
+local hudname = 15
 Citizen.CreateThread(function()
     while true do 
         Citizen.Wait(0)
         local ped = GetPlayerPed(-1)
         local veh = GetVehiclePedIsIn(ped)
-        if IsPedInAnyVehicle(ped, false) and GetPedInVehicleSeat(veh, -1) == ped then
-            if StartSpeed == "35" and hudname == "KPH" then -- Change this to What ever name thst is sutable for the display
-                SpeedDisplay("~r~Posted Speedlimit: (" .. StartSpeed .. "" .. hudname .. ")", x, y)
-            else
-                SpeedDisplay("~r~Posted Speedlimit: (" .. StartSpeed .. "" ..hudname .. ")", x, y)
-            end
+        if IsPedInAnyPoliceVehicle(ped, false) and GetPedInVehicleSeat(veh, -1) == ped then
+            SpeedDisplay("~r~Pit Timmer: (" .. hudname .. ")", x, y)
+        else
+            SpeedDisplay("~r~Pit Timmer: (" ..hudname .. ")", x, y)
         end
     end
-end)
-
-RegisterNetEvent("Mackenzie_Rich:Speed_Display")
-AddEventHandler("Mackenzie_Rich:Speed_Display", function()
-    if IsPedInAnyVehicle(GetVehiclePedIsIn(GetPlayerPed(-1)), false) then
-        local player = GetPlayerPed(-1)
-        local veh = GetVehiclePedIsIn(ped)
-        local KPH = math.ceil(GetEntitySpeed(veh)*3.6)
-        local class = GetVehicleClass(veh)
-        local StartSpeed = StartSpeed[math.random(#SpeedVirables)]
-
-        if class ~= 15 and class ~= 16 then
-            if GetPedInVehicleSeat(veh, -1) == player then
-                if KPH < StartSpeed then
-                    speeding = false
-                elseif KPH < currentSpeed then 
-                    speeding = false
-                elseif KPH > currentSpeed then
-                    speeding = true
-                end
-            end
-        end
-    end
-end)
-
-RegisterCommand("Speed_Display", function()
-    TriggerEvent("Mackenzie_Rich:Speed_Display") 
 end)
 
 function SpeedDisplay(text, x, y)
