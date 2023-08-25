@@ -21,7 +21,8 @@ function KeyboardInput()
 end
 
 RegisterNUICallback("Submit", function()
-    SendNUIMessage({action = "Jail", visible = true, SetNuiFocus(true, true)})
+        TriggerEvent("Mackenzie_Rich:Jail")
+    SendNUIMessage({action = "Jail", visible = false, SetNuiFocus(false, false)})
   end)
 RegisterNUICallback("Cancel", function()
     SendNUIMessage({action = "Jail", visible = false, SetNuiFocus(false, false)})
