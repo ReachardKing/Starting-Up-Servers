@@ -11,13 +11,26 @@ end
 
 -- Speed_Display
 local hudname = 15
+local Speed = GetEntitySpeed(GetVehiclePedIsIn(GetPlayerPed(-1), false) * 3.6
 Citizen.CreateThread(function()
     while true do 
         Citizen.Wait(0)
         local ped = GetPlayerPed(-1)
         local veh = GetVehiclePedIsIn(ped)
         if IsPedInAnyPoliceVehicle(ped, false) and GetPedInVehicleSeat(veh, -1) == ped then
-            SpeedDisplay("~r~Pit Timmer: (" .. hudname .. ")", x, y)
+            if hudname > 1 and Speed > 50 then
+                SpeedDisplay("~r~Pit Timmer: (" .. hudname .. ")", x, y)
+            end
+        end
+    end
+end)
+
+-- code -- 
+
+Citizen.CreateThread(function()
+    while true do Citizen.Wait(0)
+        if hudname > 0 then
+            hudname = hudname -1
         end
     end
 end)
