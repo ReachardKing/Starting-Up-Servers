@@ -1,1 +1,1 @@
-client_script {"SpeedDisplay.lua"}
+client_script {"PitTimmer.lua"}
