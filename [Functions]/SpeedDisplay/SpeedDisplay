@@ -18,8 +18,6 @@ Citizen.CreateThread(function()
         local veh = GetVehiclePedIsIn(ped)
         if IsPedInAnyPoliceVehicle(ped, false) and GetPedInVehicleSeat(veh, -1) == ped then
             SpeedDisplay("~r~Pit Timmer: (" .. hudname .. ")", x, y)
-        else
-            SpeedDisplay("~r~Pit Timmer: (" ..hudname .. ")", x, y)
         end
     end
 end)
