@@ -18,7 +18,7 @@ Citizen.CreateThread(function()
         local ped = GetPlayerPed(-1)
         local veh = GetVehiclePedIsIn(ped)
         if IsPedInAnyPoliceVehicle(ped, false) and GetPedInVehicleSeat(veh, -1) == ped then
-            if hudname > 1 and Speed > 50 then
+            if hudname > 1 and Speed > 50 and Cruise == true amd cruise == true then -- One is form my mods while the other is from anyone mods 'Cruise control'
                 SpeedDisplay("~r~Pit Timmer: (" .. hudname .. ")", x, y)
             end
         end
