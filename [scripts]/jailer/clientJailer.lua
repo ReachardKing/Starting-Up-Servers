@@ -24,6 +24,7 @@ RegisterNUICallback("Submit", function()
         TriggerEvent("Mackenzie_Rich:Jail")
     SendNUIMessage({action = "Jail", visible = false, SetNuiFocus(false, false)})
   end)
+
 RegisterNUICallback("Cancel", function()
     SendNUIMessage({action = "Jail", visible = false, SetNuiFocus(false, false)})
   end)
