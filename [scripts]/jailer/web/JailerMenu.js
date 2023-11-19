@@ -43,7 +43,7 @@ $(()=> {
 
         $(".Cancel").click(function (e) { 
             e.preventDefault();
-            $(`https://Jailer/cancel`, JSON.stringify({}))
+            $(`https://Jailer/Cancel`, JSON.stringify({}))
         });
     })
 })
