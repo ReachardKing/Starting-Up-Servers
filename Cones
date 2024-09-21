@@ -1,0 +1,101 @@
+<!--Using html to spawn cones-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cone Example</title>
+    <style>
+        .cone {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid #FF5733; /* Cone color */
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cone"></div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Cone Example</title>
+    <style>
+        .cone {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid #FF5733;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <button onclick="spawnCone()">Spawn Cone</button>
+    <div id="coneContainer"></div>
+
+    <script>
+        function spawnCone() {
+            const coneDiv = document.createElement('div');
+            coneDiv.className = 'cone';
+            document.getElementById('coneContainer').appendChild(coneDiv);
+        }
+    </script>
+
+</body>
+</html>
+
+<!-- client.lua-->
+-- Function to spawn a cone
+function spawnCone(x, y, z)
+    -- Load the model for the cone
+    RequestModel("prop_cone_full_01")
+    
+    while not HasModelLoaded("prop_cone_full_01") do
+        Wait(500)
+    end
+
+    -- Create the cone object
+    local cone = CreateObject(GetHashKey("prop_cone_full_01"), x, y, z, true, true, true)
+
+    -- Optionally, set the object's rotation
+    SetEntityRotation(cone, 0.0, 0.0, 0.0, 2, true)
+
+    -- Set the object to be dynamic (optional)
+    SetEntityDynamic(cone, true)
+end
+
+-- Command to spawn a cone at the player's location
+RegisterCommand("spawncone", function(source, args, rawCommand)
+    local playerPed = PlayerPedId()
+    local playerCoords = GetEntityCoords(playerPed)
+    
+    spawnCone(playerCoords.x, playerCoords.y, playerCoords.z)
+end, false)
+
+<!-- extras spawning medbag-->
+function spawnMedBag(x, y, z)
+    RequestModel("prop_med_bag_01")
+    
+    while not HasModelLoaded("prop_med_bag_01") do
+        Wait(500)
+    end
+
+    local medBag = CreateObject(GetHashKey("prop_med_bag_01"), x, y, z, true, true, true)
+    SetEntityDynamic(medBag, true)
+end
+
+-- Example usage
+spawnMedBag(100.0, -200.0, 20.0) -- Replace with desired coordinates
+
