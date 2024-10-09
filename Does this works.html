@@ -1,325 +1,95 @@
-// Input text content to span tag's
+
+<!-- Disable elements -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Span with Input Value</title>
+    <title>Disable Element Example</title>
 </head>
-
 <body>
 
-    <label for="inputField">Enter something: </label>
-    <input type="text" id="inputField" oninput="updateSpan()" placeholder="Type here...">
+    <!-- Input field that will be disabled -->
+    <input type="text" id="myInput" placeholder="Enter some text">
 
-    <p>Your input is: <span id="displaySpan"></span></p>
+    <!-- Button that will trigger disabling -->
+    <button id="disableButton">Disable Input</button>
 
-    <script>
-        function updateSpan() {
-            // Get the value of the input field
-            var inputValue = document.getElementById("inputField").value;
-            // Set the value of the span
-            document.getElementById("displaySpan").textContent = inputValue;
-        }
-    </script>
-
+    <script src="script.js"></script>
 </body>
-
 </html>
 
+// Get references to the button and input field
+const disableButton = document.getElementById('disableButton');
+const inputField = document.getElementById('myInput');
 
-// Sort & filter
+// Add an event listener to the button
+disableButton.addEventListener('click', function() {
+    // Disable the input field when the button is clicked
+    inputField.disabled = true;
+});
 
-<!DOCTYPE html>
-<html lang="en">
+<!-- Lua select options -->
+<!-- NUI callback function to handle the selection data -->
+RegisterNUICallback('submitSelection', function(data, cb)
+    local selectedValue = data.selection
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sort and Filter Table</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
+    -- Print the selected value to the console (for debugging)
+    print("Selected Value: " .. selectedValue)
 
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 20px;
-        }
+    -- You can now use the selected value in your script
+    if selectedValue == "option1" then
+        -- Perform action for option 1
+        print("Option 1 selected")
+    elseif selectedValue == "option2" then
+        -- Perform action for option 2
+        print("Option 2 selected")
+    elseif selectedValue == "option3" then
+        -- Perform action for option 3
+        print("Option 3 selected")
+    end
 
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
+    -- Let the NUI know that the data was received
+    cb('ok')
+end)
 
-        th {
-            background-color: #f2f2f2;
-            cursor: pointer;
-        }
+<!-- lua input -->
+-- Open the NUI HTML when a command or a specific condition is met
+RegisterCommand("openui", function()
+    SetNuiFocus(true, true) -- Set focus to NUI (Mouse and Keyboard)
+    SendNUIMessage({
+        type = "openUI"
+    })
+end)
 
-        th:hover {
-            background-color: #ddd;
-        }
+-- NUI Callback when receiving input from HTML
+RegisterNUICallback("submit", function(data, cb)
+    local userInput = data.text  -- Get the input value sent from the HTML
 
-        input[type="text"] {
-            margin-bottom: 10px;
-            padding: 5px;
-            width: 200px;
-        }
-    </style>
-</head>
+    -- Print the input to the console (for example, you can do anything with it)
+    print("User input: " .. userInput)
 
-<body>
+    -- Do something with the input, such as triggering events or storing data
+    TriggerEvent('chat:addMessage', {
+        args = { "Input received:", userInput }
+    })
 
-    <h2>Sortable and Filterable Table</h2>
+    -- Close the UI after receiving input
+    SetNuiFocus(false, false)
 
-    <label for="nameFilter">Filter by Name:</label>
-    <input type="text" id="nameFilter" placeholder="Search for names.." onkeyup="filterTable()">
+    cb('ok') -- Send a callback response
+end)
 
-    <table id="myTable">
-        <thead>
-            <tr>
-                <th onclick="sortTable(0)">Name</th>
-                <th onclick="sortTable(1)">Age</th>
-                <th onclick="sortTable(2)">Country</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>John Doe</td>
-                <td>29</td>
-                <td>USA</td>
-            </tr>
-            <tr>
-                <td>Jane Smith</td>
-                <td>22</td>
-                <td>Canada</td>
-            </tr>
-            <tr>
-                <td>Emily Johnson</td>
-                <td>35</td>
-                <td>UK</td>
-            </tr>
-            <tr>
-                <td>Michael Brown</td>
-                <td>27</td>
-                <td>Australia</td>
-            </tr>
-            <tr>
-                <td>Daniel Lee</td>
-                <td>42</td>
-                <td>China</td>
-            </tr>
-        </tbody>
-    </table>
+-- Optionally, close NUI by pressing the ESC key
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(0)
+        if IsControlJustReleased(0, 322) then -- ESC key
+            SetNuiFocus(false, false)
+            SendNUIMessage({
+                type = "closeUI"
+            })
+        end
+    end
+end)
 
-    <script>
-        // Sorting function
-        function sortTable(columnIndex) {
-            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-            table = document.getElementById("myTable");
-            switching = true;
-            // Set the sorting direction to ascending:
-            dir = "asc";
-
-            while (switching) {
-                switching = false;
-                rows = table.rows;
-                for (i = 1; i < (rows.length - 1); i++) {
-                    shouldSwitch = false;
-                    x = rows[i].getElementsByTagName("TD")[columnIndex];
-                    y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
-
-                    if (dir == "asc") {
-                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                            shouldSwitch = true;
-                            break;
-                        }
-                    } else if (dir == "desc") {
-                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                            shouldSwitch = true;
-                            break;
-                        }
-                    }
-                }
-                if (shouldSwitch) {
-                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                    switching = true;
-                    switchcount++;
-                } else {
-                    if (switchcount == 0 && dir == "asc") {
-                        dir = "desc";
-                        switching = true;
-                    }
-                }
-            }
-        }
-
-        // Filter function
-        function filterTable() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("nameFilter");
-            filter = input.value.toLowerCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
-
-            for (i = 1; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0]; // Assuming you are filtering by the first column (Name)
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Spinner Styles */
-        .spinner {
-            border: 4px solid #f3f3f3;
-            /* Light grey */
-            border-top: 4px solid #3498db;
-            /* Blue */
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
-            display: none;
-            margin-right: 10px;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Button styles */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #3498db;
-            border: none;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        /* Other button */
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        button {
-            position: relative;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            outline: none;
-        }
-
-        .spinner {
-            display: none;
-            width: 16px;
-            height: 16px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-top: 2px solid white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .loading .spinner {
-            display: inline-block;
-        }
-    </style>
-    </head>
-
-    <body>
-
-        <!-- <button class="btn" id="myButton" onclick="showSpinner()">
-<div class="spinner" id="spinner"></div>
-Submit
-</button> -->
-
-        <div class="button-container">
-            <button id="spinner-btn">
-                <span id="spinner" class="spinner"></span>
-                Submit
-            </button>
-        </div>
-        <script>
-
-            function showSpinner() {
-                const button = document.getElementById('myButton');
-                const spinner = document.getElementById('spinner');
-
-                // Show the spinner
-                spinner.style.display = "inline-block";
-
-                // Disable the button to prevent multiple clicks
-                button.disabled = true;
-
-                // Simulate an async action (like submitting a form)
-                setTimeout(() => {
-                    spinner.style.display = "none";  // Hide spinner
-                    button.disabled = false;  // Enable button
-                }, 3000);  // Adjust the timeout based on the action
-            }
-            document.getElementById("spinner-btn").addEventListener("click", function () {
-                const button = this;
-                button.classList.add("loading");
-
-                // Simulate a loading process (e.g., an API call)
-                setTimeout(() => {
-                    button.classList.remove("loading");
-                    alert("Loading complete!");
-                }, 3000);  // Spinner will disappear after 3 seconds
-            });
-
-        </script>
-    </body>
-
-</html>
