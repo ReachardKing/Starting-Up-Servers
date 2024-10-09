@@ -1,0 +1,90 @@
+<style>
+    .pagination-container {
+        background: darkblue;
+        width: 100%;
+        height: 50px; /* Use a fixed height for better alignment */
+        position: relative; /* Use relative positioning for inner elements */
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* Distribute space evenly */
+        padding: 0 20px; /* Add padding for better spacing */
+    }
+
+    .items-per-page {
+        color: white; /* Change text color for better contrast */
+    }
+
+    .pagination-controls i {
+        color: crimson;
+        font-size: 18px;
+        cursor: pointer; /* Change cursor to pointer for better UX */
+    }
+
+    .select-items {
+        width: 30%;
+    }
+</style>
+
+<div class="pagination-container">
+    <p class="items-per-page">
+        Items per page: 
+        <select class="select-items" aria-label="Items per page">
+            <option value="" disabled selected>Select</option>
+            <option>10</option>
+            <option>50</option>
+            <option>100</option>
+            <option>200</option>
+        </select>
+    </p>
+    <p style="color: white; text-align: center;">Showing 1-100 of 100</p>
+    <div class="pagination-controls">
+        <i class="fa fa-step-backward" aria-label="Previous page"></i>
+        <i class="fa fa-step-backward fa-2x" aria-label="First page"></i>
+        <i class="fa fa-step-forward" aria-label="Next page"></i>
+        <i class="fa fa-step-forward fa-2x" aria-label="Last page"></i>
+    </div>
+</div>
+
+<script>
+	// Simulate current page and total pages (these would usually be dynamic)
+    let currentPage = 1;
+    const totalPages = 10;
+
+    // Function to update the displayed page information
+    function updatePageInfo() {
+        document.querySelector(".page-info").textContent = `Page ${currentPage} of ${totalPages}`;
+    }
+
+    // Event listeners for the pagination controls
+    document.querySelector(".fa-step-backward[aria-label='Previous page']").addEventListener("click", function() {
+        if (currentPage > 1) {
+            currentPage--;
+            updatePageInfo();
+        }
+    });
+
+    document.querySelector(".fa-step-backward.fa-2x[aria-label='First page']").addEventListener("click", function() {
+        if (currentPage !== 1) {
+            currentPage = 1;
+            updatePageInfo();
+        }
+    });
+
+    document.querySelector(".fa-step-forward[aria-label='Next page']").addEventListener("click", function() {
+        if (currentPage < totalPages) {
+            currentPage++;
+            updatePageInfo();
+        }
+    });
+
+    document.querySelector(".fa-step-forward.fa-2x[aria-label='Last page']").addEventListener("click", function() {
+        if (currentPage !== totalPages) {
+            currentPage = totalPages;
+            updatePageInfo();
+        }
+    });
+
+    // Initial page information
+    updatePageInfo();
+</script>
+
