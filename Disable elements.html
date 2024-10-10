@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disable Element Example</title>
+</head>
+<body>
+
+    <!-- Input field that will be disabled -->
+    <input type="text" id="myInput" placeholder="Enter some text">
+
+    <!-- Button that will trigger disabling -->
+    <button id="disableButton">Disable Input</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+// Get references to the button and input field
+const disableButton = document.getElementById('disableButton');
+const inputField = document.getElementById('myInput');
+
+// Add an event listener to the button
+disableButton.addEventListener('click', function() {
+    // Disable the input field when the button is clicked
+    inputField.disabled = true;
+});
+
+
+<!-- Disable elements -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disable Element Example</title>
+</head>
+<body>
+
+    <!-- Input field that will be disabled -->
+    <input type="text" id="myInput" placeholder="Enter some text">
+
+    <!-- Button that will trigger disabling -->
+    <button id="disableButton">Disable Input</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+// Get references to the button and input field
+const disableButton = document.getElementById('disableButton');
+const inputField = document.getElementById('myInput');
+
+// Add an event listener to the button
+disableButton.addEventListener('click', function() {
+    // Disable the input field when the button is clicked
+    inputField.disabled = true;
+});
+
+<!-- Lua select options -->
+
+<!-- lua input -->
+-- Open the NUI HTML when a command or a specific condition is met
+RegisterCommand("openui", function()
+    SetNuiFocus(true, true) -- Set focus to NUI (Mouse and Keyboard)
+    SendNUIMessage({
+        type = "openUI"
+    })
+end)
+
+-- NUI Callback when receiving input from HTML
+RegisterNUICallback("submit", function(data, cb)
+    local userInput = data.text  -- Get the input value sent from the HTML
+
+    -- Print the input to the console (for example, you can do anything with it)
+    print("User input: " .. userInput)
+
+    -- Do something with the input, such as triggering events or storing data
+    TriggerEvent('chat:addMessage', {
+        args = { "Input received:", userInput }
+    })
+
+    -- Close the UI after receiving input
+    SetNuiFocus(false, false)
+
+    cb('ok') -- Send a callback response
+end)
+
+-- Optionally, close NUI by pressing the ESC key
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(0)
+        if IsControlJustReleased(0, 322) then -- ESC key
+            SetNuiFocus(false, false)
+            SendNUIMessage({
+                type = "closeUI"
+            })
+        end
+    end
+end)
+
